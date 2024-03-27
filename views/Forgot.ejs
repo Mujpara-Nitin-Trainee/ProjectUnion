@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You Page</title>
+
+    <link rel="stylesheet" href="/CSS/style.css">
+
+</head>
+<body onload="checktimeout()">
+    <div class="Wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="thank-img">
+                    <img src="/Assets/image-fBLQvAFN1-transformed 1.png">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col thanks">
+                    <p class="timer">Time Left <span id="timer">1</span></p>
+                    <h3>You are using Forgot Password</h3>
+                    <p>Click on Below Link / Copy Below Link and Paste in Url</p>
+                    <input type="hidden" id="accesscode" value="<%=accesscode %>">
+                    <p><a id="accesslink" href="http://localhost:3000/api/user/setPassword?accesscode=<%= accesscode %>">http://localhost:3000/api/user/setPassword?accesscode=<%= accesscode %></a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/JS/validateForgot.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+
+    <link rel="stylesheet" href="/CSS/style.css" />
+  </head>
+  <body>
+    <div class="Wrapper">
+      <div class="container">
+        <h3>Login Here</h3>
+        <div class="row">
+          <div class="col">
+            <div class="form-img">
+              <img src="/Assets/Designer _Flatline 1.png" alt="Img1" />
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-wrapper login">
+              <form
+                id="form"
+                name="form"
+                action="/api/user/login"
+                method="POST"
+                onsubmit="return validateLogin()"
+              >
+              <% if(message) { %>
+                <script>alert('<%= message %>');</script>
+              <% } %>
+
+                <div class="form-handler">
+                  <div class="form-label">
+                    <label for="email">Email</label>
+                  </div>
+                  <div class="form-input">
+                    <input type="text" name="email" placeholder="Enter Email Id " id="email" />
+                  </div>
+                  <span
+                    class="error"
+                    name="email_error"
+                    id="email_error"
+                  ></span>
+                </div>
+
+                <div class="form-handler">
+                    <div class="form-label">
+                      <label for="password">Password</label>
+                    </div>
+                    <div class="form-input">
+                      <input type="password" name="password" placeholder="Enter Password" id="password" /><br>
+                      <span
+                      class="error"
+                      name="password"
+                      id="pass1"
+                    ></span>
+                    </div>
+                  </div>
+
+                  <div class="form-handler">
+                    <div class="form-links">
+                      <a href="/api/user/forgot">Forgot Password?</a>
+                    </div>
+                  </div>
+
+                <div class="form-btn">
+                  <input
+                    type="submit"
+                    value="submit"
+                    name="submit"
+                    id="submit"
+                  />
+                  <input type="reset" value="reset" name="reset" id="reset" />
+                </div>
+              </form>
+              <div class="form-links external">
+               <p> <span class="link-head">Not a Member?</span> <a href="/api/user/"> Signup</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/JS/validateLogin.js"></script>
+  </body>
+</html>

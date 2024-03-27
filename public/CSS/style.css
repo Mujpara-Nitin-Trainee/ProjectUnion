@@ -1,0 +1,165 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background-color:  	rgb(46, 139, 87);
+}
+
+.Wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container{
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgb(220, 228, 226);
+    border-radius: 30px;
+}
+
+.container h3{
+    color:  	rgb(46, 139, 87);
+    text-align: center;
+    text-decoration: underline;
+    font-size: 30px;
+}
+
+.container .form-img{
+    background-color: rgb(236, 134, 62);
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15%;
+}
+
+.col{
+    width: calc(80%/2);
+    justify-content: center;
+    align-items: center;
+}
+
+.thanks{
+    width: calc(100%/1);
+}
+
+.error{
+    color: rgb(241, 56, 56);
+    font-weight: 400;
+}
+
+.form-img{
+    margin: 50px;
+}
+
+.login{
+    margin-top: 70px;
+}
+
+.form-handler{
+    margin: 10px;
+}
+
+.form-links a{
+    text-decoration: none;
+    color: rgb(46, 139, 87);
+}
+
+.external{
+    margin: 15px 0px 0px 12px;
+}
+
+.link-head{
+    font-weight: bold;
+    color: rgb(46, 139, 87)
+}
+
+.form-label{
+    color:  	rgb(46, 139, 87);
+    margin-bottom: 5px;
+}
+
+.form-label label{
+    font-weight: 600;
+}
+
+.form-input input{
+    background-color: rgb(220, 228, 226);
+    border: none;
+    border-bottom: 1px solid black;
+    width: 250px;
+}
+
+.form-input select{
+    background-color: rgb(220, 228, 226);
+    color: gray;
+    font-weight: bolder;
+    border: none;
+    border-bottom: 1px solid black;
+    width: 250px;
+}
+
+::placeholder{
+    color:black;
+    font-weight: bolder;
+}
+
+.form-btn{
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.form-btn input{
+    background-color: rgb(60, 179, 113);
+    border-radius: 12px;
+    font-weight: bold;
+    color: rgb(44, 43, 43);
+}
+
+.form-btn input{
+    padding: 5px 30px;
+}
+
+.img-404 img{
+    width: 250px;
+    height: 250px;
+}
+
+.error-container{
+    padding: 40px;
+}
+
+.error-heading{
+    margin-top: 20px;
+}
+
+.error-container h2{
+    color: rgb(46, 139, 87);
+    text-align: center;
+}
+
+.error-heading {
+    margin-top: 100px;
+}
+
+.error-container a{
+    font-weight: bold;
+    color: rgb(46, 139, 87);
+    text-decoration: underline;
+}
+
+.thank-img img{
+    width: 130px;
+    height: 130px;
+    margin-left:230px;
+}
+
+.timer{
+    margin-left: 230px;
+}
