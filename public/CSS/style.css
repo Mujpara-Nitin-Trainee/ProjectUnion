@@ -163,3 +163,27 @@ body{
 .timer{
     margin-left: 230px;
 }
+
+.main-page{
+    margin-top: 50px;
+    background-color: rgb(197, 212, 218);
+    margin-bottom: 50px;
+}
+
+.main-table{
+    width: calc(100%/1);
+    justify-content: center;
+    align-items: center;
+}
+
+.main-table table{
+
+    padding-left: 250px;
+    text-align: center;
+}
+
+.main-table table tr,td,th{
+    border: 3px solid rgb(34, 102, 7);
+    border-collapse: collapse;
+    padding: 10px;
+}

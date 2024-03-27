@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>javascript task1</title>
+    <style>
+      #upperbuttons {
+        padding-left: 140px;
+      }
+      #lowerbuttons {
+        padding-right: 140px;
+      }
+      table {
+        border: 5px solid black;
+        border-collapse: collapse;
+      }
+      tr,
+      td {
+        height: 100px;
+        width: 100px;
+        border: 5px solid black;
+      }
+      tr:nth-of-type(odd) td:nth-of-type(odd),
+      tr:nth-of-type(even) td:nth-of-type(even) {
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h2>Nitin Mujpara 01/02/2024 24DEV084</h2>
+      <h3>Dynamic Table using javascript</h3>
+      <div id="upperbuttons">
+        <button
+          id="colplus"
+          style="height: 35px; width: 35px"
+          onclick="addcolumn()"
+        >
+          +
+        </button>
+        <button
+          id="colminus"
+          style="height: 35px; width: 35px"
+          onclick="minuscolumn()"
+        >
+          -
+        </button>
+      </div>
+      <br />
+
+      <table id="tab1">
+        <tr id="row1">
+          <td></td>
+          <td id=""></td>
+        </tr>
+        <tr id="row2">
+          <td id=""></td>
+          <td id=""></td>
+        </tr>
+      </table>
+
+      <br />
+      <div id="lowerbuttons">
+        <button
+          id="colplus"
+          style="height: 35px; width: 35px"
+          onclick="addrow()"
+        >
+          +
+        </button>
+        <button
+          id="colminus"
+          style="height: 35px; width: 35px"
+          onclick="minusrow()"
+        >
+          -
+        </button>
+      </div>
+    </center>
+
+    <script>
+      function addrow() {
+        const table = document.getElementsByTagName("table");
+        const tr = table[0].getElementsByTagName("tr");
+        const td = tr[0].getElementsByTagName("td");
+
+        // console.log(tr.length)
+        // console.log(td.length)
+        table[0].appendChild(document.createElement("tr"));
+
+        for (i = 0; i < td.length; i++) {
+          table[0].lastChild.appendChild(document.createElement("td"));
+        }
+      }
+
+      function minusrow() {
+        const table = document.getElementsByTagName("table");
+        const tr = table[0].getElementsByTagName("tr");
+        const td = table[0].getElementsByTagName("td");
+        if (tr.length > 2) {
+          table[0].removeChild(table[0].lastChild);
+        }
+      }
+
+      function addcolumn() {
+        const table = document.getElementsByTagName("table");
+        const tr = table[0].getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+          tr[i].appendChild(document.createElement("td"));
+        }
+      }
+
+      function minuscolumn() {
+        const table = document.getElementsByTagName("table");
+        const tr = table[0].getElementsByTagName("tr");
+        const td = table[0].getElementsByTagName("td");
+
+        if ((tr.length >= 2) && tr[0].getElementsByTagName("td").length > 2) {
+          for (i = 0; i < tr.length; i++) {
+            tr[i].removeChild(tr[i].lastChild);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
