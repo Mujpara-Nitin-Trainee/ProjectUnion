@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student's list</title>
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+            body{
+                margin: 0;
+                padding: 0;
+            }
+            table{
+                border: 2px solid black;
+                border-collapse: collapse;
+            }
+            th{
+                padding: 8px;
+                border: 3px solid black;
+                background-color: aquamarine; 
+            }
+            tr,td{
+                padding: 8px;
+                border: 3px solid black;
+            }
+            .container{
+                max-width: 1470px;
+                margin: 0 auto;
+            }
+            tr:nth-of-type(odd){
+                background-color: rgb(177, 194, 194);
+            }
+            tr:nth-last-of-type(even){
+                background-color: rgb(180, 252, 180);
+            }
+            .row{
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .pagging{
+                padding-left: 550px;
+            }
+
+            .btn-container{
+                align-items: center;
+                margin: 10px;
+                display: inline-flex;
+            }
+
+            .btn-container button{
+                padding:10px 10px;
+                margin: 10px;
+            }
+
+            select{
+                margin-left:700px;
+                padding: 5px;
+            }
+            h4{
+                text-align: center;
+                margin-left: 100px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+
+                <div class="row">
+
+                    <h1>Student Data list</h1>
+                    <h4>Sorted In <p id="order"><%= order %></p></h4> 
+                    <select>
+                        <option>Short In</option>
+                        <option name="asc" value="asc" onclick="orderbyname('asc')">A-Z</option>
+                        <option name="desc" value="desc" onclick="orderbyname('desc')">Z-A</option>
+                    </select>
+                </div>
+
+                <table>
+                    <tr>
+                        <th>student id</th>
+                        <th>name</th>
+                        <th>email Id</th>
+                        <th>enrollment no</th>
+                        <th>mobile no</th>
+                        <th>gender</th>
+                        <th>age</th>
+                        <th>address</th>
+                        <th>college name</th>
+                        <th>entry date</th>
+                    </tr>
+                        <% students.forEach( function(s) { %>
+                            <tr> 
+                                <td><%= s.id %></td>
+                                <td><%= s.name %></td>
+                                <td><%= s.email %></td>
+                                <td><%= s.enrollment_no %></td>
+                                <td><%= s.mobile_no %></td>
+                                <td><%= s.gender %></td>
+                                <td><%= s.age %></td>
+                                <td><%= s.address %></td>
+                                <td><%= s.college_name %></td>
+                                <td><%= s.created_date %></td>
+                            </tr>
+                        <% })  %>             
+                </table>
+            </div>
+            <div class="row">
+                <div class="pagging">
+                        <div class="btn-container">
+                            <button onclick="onfirst()"><<</button>
+                            <button onclick="changepage(-1)"><</button>
+                            Page <p id="pagecount"><%= page %></p>
+                            <button onclick="changepage(1)">></button>
+                            <button onclick="onlast()">>></button> 
+                        </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <script>
+
+            let currentpage = 1;
+            let minpage = 1;
+            let maxpage = 250;
+
+            // document.getElementById("pagecount").innerHTML = currentpage;
+            // document.getElementById('order').innerHTML = "asc";
+
+            function orderbyname(name){
+                    let order = name;
+                    document.getElementById('order').innerHTML = order;
+                    window.location = `http://localhost:3000/api/user/pagging/orderby?order=${order}`;
+            }
+
+            function changepage(val){
+                currentpage = Number(document.getElementById("pagecount").innerHTML);
+                // console.log(typeof(currentpage));
+                
+                let order = document.getElementById('order').innerHTML;
+
+                currentpage = currentpage + val;
+
+                if(currentpage > 250 || currentpage < 1){
+                    return 0;
+                }
+
+                document.getElementById("pagecount").innerHTML = currentpage;
+                
+
+                window.location = `http://localhost:3000/api/user/pagging/orderby?page=${currentpage}&order=${order}`
+            }
+
+            function onfirst(){
+                document.getElementById('pagecount').innerHTML = 1;
+                currentpage = 1;
+
+                let order = document.getElementById('order').innerHTML;
+
+                window.location = `http://localhost:3000/api/user/pagging/orderby?page=${minpage}&order=${order}`
+            }
+
+            function onlast(){
+                document.getElementById('pagecount').innerHTML = 5;
+                currentpage = 5;
+
+                let order = document.getElementById('order').innerHTML;
+
+                window.location = `http://localhost:3000/api/user/pagging/orderby?page=${maxpage}&order=${order}`
+            }   
+        </script>
+
+
+    </body>
+</html>
