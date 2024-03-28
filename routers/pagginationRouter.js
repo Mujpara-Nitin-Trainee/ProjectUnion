@@ -34,6 +34,15 @@ router.get("/searching/delimiterSearch",auth, (req,res) => {
     res.render('delimiterSearch',{rows});
 })
 
-router.post("/searching/delimiterSearch", auth, pageDelimiterSearch)
+router.post("/searching/delimiterSearch", auth, pageDelimiterSearch);
+
+router.get("/frontside", auth, (req,res) => {
+    res.render('frontPagging');
+});
+
+router.get("/comments", auth, (req,res) => {
+    id = req.query.id || 1;
+    res.render('comments',{id});
+})
 
 module.exports = router;

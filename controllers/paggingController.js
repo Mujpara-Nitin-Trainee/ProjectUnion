@@ -343,11 +343,11 @@ const pageDelimiterSearch = async(req,res) => {
             email.push(`email LIKE '%'`)
         }
 
-        console.log(firstname + " " + lastname + " " + email + " " + mobileno);
+        // console.log(firstname + " " + lastname + " " + email + " " + mobileno);
 
         const [response] = await pageDelimiterSearchService(firstname,lastname,email,mobileno);
 
-        console.log(response);
+        // console.log(response);
 
         if(response.length > 0){
             res.render('delimiterSearch',{student:response,rows:Object.keys(response[0])});
