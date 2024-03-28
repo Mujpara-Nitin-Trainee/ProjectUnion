@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Attendance Report</title>
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+            body{
+                margin: 0;
+                padding: 0;
+                background-color: aquamarine;
+            }
+            .container{
+                max-width: 1170px;
+                margin: 0 auto;
+                padding: 20px 20px;
+            }
+            .row{
+                display: flex;
+                flex-wrap: wrap;
+            }
+            table{
+                border: 2px solid black;
+                border-collapse: collapse;
+            }
+            th{
+                padding: 8px;
+                border: 3px solid black;
+                background-color: aquamarine; 
+            }
+            tr,td{
+                padding: 8px;
+                border: 3px solid black;
+            }
+            .filter{
+                font-weight: 600;
+                margin: 30px;
+                margin-left: 300px;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <center>
+            <h1>Nitin Mujpara 24DEV084</h1>
+        </center>
+
+        <div class="container">
+            <div class="row">
+                <div class="filter">
+                    <p class="month-header">Month:-<p id="month"><%= month %></p></p>
+                    <p id="filter">Your Selected Input:- 
+                        <% if(month == 1){ %>
+                            JAN 2024
+                        <% } else if(month == 2) { %>
+                            FEB 2024
+                        <% } else { %>
+                            DEC 2024
+                        <% } %>
+                    </p>
+                    <select>
+                        <% if(month == 1){ %>
+                            <option selected>JAN 2024</option>
+                        <% } else if(month == 2) { %>
+                            <option selected>FEB 2024</option>
+                        <% } else { %>
+                            <option selected>DEC 2023</option>
+                        <% } %>
+                        <option onclick="changefilter(12)">DEC 2023</option>
+                        <option onclick="changefilter(1)">JAN 2024</option>
+                        <option onclick="changefilter(2)">FEB 2024</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="headding">
+                        <!-- <p id=""><%=id %></p> -->
+                    </div>
+                </div>
+
+                <div class="col">
+                    <table>
+                        <tr>
+                            <th>Student's Id</th>
+                            <th>Student Name</th>
+                            <th>No. Of Days Present</th>
+                            <th>Percentage</th>
+                        </tr>
+
+                        <tr>
+                            <td><%= student.student_id %></td>
+                            <td><%= student.name %></td>
+                            <td><%= student.Present_days %></td>
+                            <td>
+                                <% if(month == 12 || month == 1 ){ %> 
+                                    <%= parseFloat(((student.Present_days)/31)*100).toFixed(2) %>%
+                                <% }else { %>
+                                    <%= parseFloat(((student.Present_days)/29)*100).toFixed(2) %>%
+                                <% } %>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+        <script>
+            function changefilter(val){
+                let month = val;
+                // console.log(month);
+                document.getElementById('month').innerHTML = month;
+                window.location = `http://localhost:3000/api/user/pagging/resultgrid/attendanceReport?id=<%=student.student_id%>&month=${month}`;
+            }
+        </script>
+
+    </body>
+
+</html>

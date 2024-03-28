@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Result Full view</title>
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+            body{
+                margin: 0;
+                padding: 0;
+                background-color: aquamarine;
+            }
+            .container{
+                max-width: 1170px;
+                margin: 0 auto;
+                padding: 20px 20px;
+            }
+            .row{
+                display: flex;
+                flex-wrap: wrap;
+            }
+            table{
+                border: 2px solid black;
+                border-collapse: collapse;
+            }
+            th{
+                padding: 8px;
+                border: 3px solid black;
+                background-color: aquamarine; 
+            }
+            tr,td{
+                padding: 8px;
+                border: 3px solid black;
+            }
+        </style>
+    </head>
+    <body>
+
+        <center>
+            <h1>Nitin Mujpara 24DEV084</h1>
+        </center>
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="headding">
+                        <h2><u>Student Name</u> :- <%= student[0].name %></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <table>
+                    <tr>
+                        <th rowspan="2">Student Id</th>
+                        <th rowspan="2">Student Name</th>
+                        <th rowspan="2">Subject Name</th>
+                        <th colspan="2">terminal</th>
+                        <th colspan="2">Prelims</th>
+                        <th colspan="2">Mains</th>
+                        <th rowspan="2">Total Marks</th>
+                    </tr>
+                    <tr>
+                            <th>Practical</th>
+                            <th>Theory</th>
+                            <th>Practical</th>
+                            <th>Theory</th>
+                            <th>Practical</th>
+                            <th>Theory</th>
+                    </tr>
+                    <% for(let i=0,j=0; i<student.length,j<6; i+=3,j+=1) { %> 
+                        <tr>
+                            <tr>
+                                <td><%= student[i].Student_id %></td>
+                                <td><%= student[i].name %></td>
+                                <td><%= student[j].subject_name %></td>
+                                <td><%= student[i].gotted_practical_marks %></td>
+                                <td><%= student[i].gotted_theory_marks %></td>
+                                <td><%= student[i+1].gotted_practical_marks%></td>
+                                <td><%= student[i+1].gotted_theory_marks%></td>
+                                <td><%= student[i+2].gotted_practical_marks%></td>
+                                <td><%= student[i+2].gotted_theory_marks%></td>
+                                <td><%= student[i].gotted_practical_marks +
+                                        student[i].gotted_theory_marks +
+                                        student[i+1].gotted_practical_marks +
+                                        student[i+1].gotted_theory_marks +
+                                        student[i+2].gotted_practical_marks +
+                                        student[i+2].gotted_theory_marks 
+                                    %></td>
+                            </tr>
+                        </tr>
+                    <% } %>
+                        <tr>
+                            <th rowspan="2" colspan="3"> Attendance:- <%= parseFloat((attendance[0].Present_days/91)*100).toFixed(2)%>%</th>
+                            <th  colspan="6">Total Obtained Marks:-</th>
+                            <th><%= total_mark %></th>
+                        </tr>
+                        <tr>
+                            <th  colspan="6">Total Obtained Percentage:-</th>
+                            <th><%= (total_mark/1200)*100 %>%</th>
+                        </tr>
+                </table>
+            </div>
+            <br>
+            
+        </div>
+        
+    </body>
+</html>
