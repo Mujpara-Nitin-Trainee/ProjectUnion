@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Delimeter Searching
+        </title>
+        
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+            body{
+                margin: 0;
+                padding: 0;
+            }
+            .container{
+                max-width: 1170px;
+                margin: 0 auto;
+                padding: 10px 20px;
+            }
+            .row{
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .col{
+                margin-top: 30px;
+                width: calc(100%/2);
+            }
+        
+            table{
+                border: 2px solid black;
+                border-collapse: collapse;
+                margin-bottom: 50px;
+            }
+            th{
+                padding: 8px;
+                border: 3px solid black;
+                background-color: aquamarine; 
+            }
+            tr,td{
+                padding: 8px;
+                border: 3px solid black;
+            }
+            .filter{
+                margin: 30px;
+                margin-left: 340px;
+            }
+            .pagging{
+                padding-left: 550px;
+            }
+        
+            .btn-container{
+                align-items: center;
+                margin: 10px;
+                display: inline-flex;
+            }
+            .btn-container button{
+                padding:10px 10px;
+                margin: 10px;
+            }
+            .month-header{
+                display: flex;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Hello World From Delimiter Search Page</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <table>
+                        <tr>
+                            <th>Column Name</th>
+                            <th>Delimiter</th>
+                        </tr>
+                        <tr>
+                            <td>First Name</td>
+                            <td>_</td>
+                        </tr>
+                        <tr>
+                            <td>Last Name</td>
+                            <td>^</td>
+                        </tr>
+                        <tr>
+                            <td>email</td>
+                            <td>$</td>
+                        </tr>
+                        <!-- <tr>
+                            <td>age</td>
+                            <td>}</td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>{</td>
+                        </tr> -->
+                        <tr>
+                            <td>mobile no </td>
+                            <td>#</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="col">
+                    <div>
+                        <form action="/api/user/pagging/searching/delimiterSearch" method="post">
+                            <label for="name">Enter Search</label>
+                            <input type="text" name="search" tabindex="0" autofocus/>
+                            <input type="submit" value="Go" />
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <% if(typeof(rows) !== 'undefined') { %> 
+                    <% if(rows.length > 0) { %>
+                        <table>
+                            <tr>
+                                <% for(let i = 0; i < rows.length; i++ ) { %> 
+                                    <th>
+                                        <%= rows[i] %>
+                                    </th>
+                                <% } %>
+                            </tr>
+                            
+                            <% for(let i=0; i< student.length; i++) { %>
+                                <tr>
+                                    <% for(let j=0; j < rows.length; j++) { %> 
+                                        <td>
+                                            <%= student[i][rows[j]] %>
+                                        </td>
+                                    <% } %>
+                                </tr>
+                            <% } %>
+                        </table>
+                        
+                        <% } else { %> 
+                            
+                            <h3>No Data Found </h3>
+                            
+                        <% } %>
+                <% } %>
+            </div>
+
+        </div>
+    </body>
+</html>
