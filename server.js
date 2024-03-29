@@ -8,7 +8,7 @@ dotenv.config();
 const port = process.env.PORT;
 
 app.set('view engine','ejs');
-app.set('views',[__dirname+'/views/',__dirname+'/views/pagging',__dirname+'/views/jobApplication']);
+app.set('views',[__dirname+'/views/',__dirname+'/views/pagging',__dirname+'/views/jobApplication',__dirname+'/views/jobApplicationNormal']);
 
 app.use(express.static(__dirname+'/public'));
 
