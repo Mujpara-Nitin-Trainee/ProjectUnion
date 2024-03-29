@@ -3,12 +3,30 @@
   <head>
     <title>javascript task1</title>
     <style>
+
+      body{
+        background-color: rgb(46, 139, 87);
+      }
+
       #upperbuttons {
         padding-left: 140px;
       }
       #lowerbuttons {
         padding-right: 140px;
+        margin-bottom: 30px;
       }
+
+      #main{
+
+        background-color: rgb(220, 228, 226);
+        padding:5px;
+      }
+
+      button{
+        font-weight: bolder;
+        font-size: 20px;
+      }
+
       table {
         border: 5px solid black;
         border-collapse: collapse;
@@ -21,8 +39,14 @@
       }
       tr:nth-of-type(odd) td:nth-of-type(odd),
       tr:nth-of-type(even) td:nth-of-type(even) {
-        background-color: aqua;
+        background-color: rgb(123, 192, 192);
       }
+
+      tr:nth-of-type(even) td:nth-of-type(odd),
+      tr:nth-of-type(odd) td:nth-of-type(even){
+        background-color: rgb(125, 153, 95);
+      }
+
     </style>
   </head>
   <body>
@@ -75,6 +99,9 @@
           -
         </button>
       </div>
+
+      <a id="main" href="/api/user/home">Click Here To Redirect Home Page</a>
+
     </center>
 
     <script>
