@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Job Application Form</title>
+    <link rel="stylesheet" href="/CSS/Employee.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div id="change">
+                <form name="form" method="post" id="form">
+                    <div class="col page" id="basic_detail">
+                        <h3>Basic Details</h3>
+                        <div class="form-container">
+                            <table>
+                                <div class="form-input-handler">
+                                    <tr>
+                                        <td>
+                                            <label for="firstname">FirstName:- </label>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="firstname" id="firstname">
+                                            <span id="firstname_error" class="error"></span>
+                                        </td>
+                                        <td>
+                                            <label for="lastname">LastName:- </label>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="lastname" id="lastname">
+                                            <span id="lastname_error" class="error"></span>
+                                        </td>
+                                    </tr>
+                                </div>
+
+                                <div class="form-input-handler">
+                                    <tr>
+                                        <td>
+                                            <label for="email">Email:- </label>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="email" id="email">
+                                            <span id="email_error" class="error"></span>
+                                        </td>
+                                        <td>
+                                            <label for="mobileno">mobileno:- </label>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="mobileno" id="mobileno">
+                                            <span id="mobile_no_error" class="error"></span>
+                                        </td>
+                                    </tr>
+                                </div>
+
+                                <div class="form-input-handler">
+                                    <tr>
+                                        <td>
+                                            <label for="gender">Gender:- </label>
+                                        </td>
+                                        <td>
+                                            <label for="male">Male </label>
+                                            <input type="radio" name="gender" value="1" id="male">
+                                            <label for="female">Female</label>
+                                            <input type="radio" name="gender" value="0" id="female">
+                                            <span id="gender_error" class="error"></span>
+                                        </td>
+                                        <td>
+                                            <label for="dob">Date of Birth:-</label>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="dob" id="dob">
+                                            <span id="dob_error" class="error"></span>
+                                        </td>
+                                    </tr>
+                                </div>
+
+                                <div class="form-input-handler">
+                                    <tr>
+                                        <td>
+                                            <label for="address">Address:-</label>
+                                        </td>
+                                        <td>
+                                            <textarea name="address" id="address"></textarea>
+                                            <span id="address_error" class="error"></span>
+                                        </td>
+                                        <td>
+                                            <label for="state">State:-</label>
+                                        </td>
+                                        <td>
+                                            <select name="state" id="state" required>
+                                                <option value="">Select Any State</option>
+                                                <% states.forEach((e)=> { %>
+                                                    <option value="<%= e.state_name %>"
+                                                        onclick="loadcities('<%= e.id %>')">
+                                                        <%=e.state_name %>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                            <span id="state_error" class="error"></span>
+                                        </td>
+                                    </tr>
+                                </div>
+
+                                <div class="form-input-handler">
+                                    <tr>
+                                        <td>
+                                            <label for="city">City:-</label>
+                                        </td>
+                                        <td>
+                                            <select name="city" id="city" required>
+                                                <option value="">Select Any city</option>
+                                            </select>
+                                            <span id="city_error" class="error"></span>
+                                        </td>
+                                        <td>
+                                            <label for="zipcode">Pincode:-</label>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="zipcode" id="zipcode">
+                                            <span id="zipcode_error" class="error"></span>
+                                        </td>
+                                    </tr>
+                                </div>
+
+                                <div class="form-input-handler">
+                                    <tr>
+                                        <td>
+                                            <label for="relation">Relationship status:-</label>
+                                        </td>
+                                        <td>
+                                            <select name="relation" id="relation">
+                                                <option>Select Any Relation</option>
+                                                <% relation.forEach((e)=> { %>
+                                                    <option value="<%= e %>">
+                                                        <%=e %>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                            <span id="relation_error" class="error"></span>
+                                        </td>
+                                    </tr>
+                                </div>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col page" id="education_details()">
+                        <h3><u>Educational Details</u></h3>
+                        <span id="education_error" class="error"></span>
+                        <div class="fieldbtn">
+                            <button type="button" onclick="changeeducation(1)">Add</button>
+                            <button type="button" onclick="changeeducation(-1)">Remove</button>
+                        </div>
+                        <div class="education">
+                            <table>
+                                <tr>
+                                    <td>
+                                        SSC result :-
+                                    </td>
+                                    <td colspan="5">
+                                        <select name="degree[]" class="degree">
+                                            <option value="">Select Degree</option>
+                                            <option value="ssc">SSC</option>
+                                            <option value="hsc">HSC</option>
+                                            <option value="diploma">Diploma</option>
+                                            <option value="bachelor">Bachelor</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Name of board:-</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="board[]" placeholder="Enter Board Name" required>
+                                    </td>
+                                    <td>
+                                        <label>Passing Year:-</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="year[]" placeholder="example:- 2018" required>
+                                    </td>
+                                    <td>
+                                        <label>Percentage</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="percentage[]" placeholder="63%" required>
+                                    </td>
+                                    <td>
+                                        <span id="s1_error" class="error"></span>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <div class="cloneducation">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col page">
+                        <h3><u>language details</u></h3>
+                        <span id="language_error" class="error"></span>
+                        <table>
+                            <% lang.forEach((e)=> { %>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="lang[]" value="<%= (e).toLowerCase() %>"
+                                            id="<%= e %>">
+                                    </td>
+                                    <td>
+                                        <label for="<%=e %>">
+                                            <%= e %>
+                                        </label>
+                                    </td>
+                                    <% lang_capability.forEach((l)=> { %>
+                                        <td>
+                                            <input type="checkbox" name="<%= e %>" value="<%= (l).toLowerCase() %>"
+                                                id="<%= e.concat(l) %>">
+                                        </td>
+                                        <td>
+                                            <label for="<%=e.concat(l) %>">
+                                                <%= l %>
+                                            </label>
+                                        </td>
+                                        <% }) %>
+                                </tr>
+                                <% }) %>
+
+                        </table>
+                        <br>
+
+                        <h3>Tech Ability</h3>
+                        <table>
+
+                            <% tech.forEach((e)=> { %>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="tech[]" value="<%= (e).toLowerCase() %>"
+                                            id="<%= e %>">
+                                    </td>
+
+                                    <td>
+                                        <label for="<%= e %>">
+                                            <%= e %>
+                                        </label>
+                                    </td>
+                                    <% tech_capability.forEach((l)=> { %>
+                                        <td>
+                                            <input type="radio" name="<%= (e.concat(1)).toLowerCase() %>"
+                                                value="<%= l %>" id="<%= e.concat(l) %>">
+                                        </td>
+                                        <td>
+                                            <label for="<%= (e.concat(1)).toLowerCase() %>">
+                                                <%= l %>
+                                            </label>
+                                        </td>
+                                        <% }) %>
+                                </tr>
+                                <% }) %>
+
+                        </table>
+                    </div>
+
+                    <div class="col page">
+                        <h3><u>Work Experience</u></h3>
+                        <div class="fieldbtn">
+                            <button type="button" onclick="changerows(1)">Add</button>
+                            <button type="button" onclick="changerows(-1)">Remove</button>
+                        </div>
+                        <span id="work_error" class="error"></span>
+                        <div class="workexperience">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label>Company Name:-</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="company_name[]" />
+                                        <span id="company_name" class="error"></span>
+                                    </td>
+                                    <td>
+                                        <label>Designation:-</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="designation[]" />
+                                        <span id="designation" class="error"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Start Date:-</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="start_date[]" />
+                                        <span id="start_date" class="error"></span>
+                                    </td>
+                                    <td>
+                                        <label>End Date:-</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="end_date[]" />
+                                        <span id="end_date" class="error"></span>
+                                    </td>
+                                    <td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="workexpclone">
+
+                        </div>
+
+                    </div>
+
+                    <div class="col page">
+                        <h3><u>Refrence Contact</u></h3>
+                        <span id="refrence_error" class="error"></span>
+                        <table>
+                            <tr>
+                                <td>
+                                    <label>Name:-</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="name" value="">
+                                </td>
+                                <td>
+                                    <label>Contact No:-</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="contactno" value="">
+                                </td>
+                                <td>
+                                    <label>Relation:-</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="relationship" value="">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col page">
+                        <h3><u>Preferances</u></h3>
+                        <span id="preferences_error" class="error"></span>
+                        <table>
+                            <tr>
+                                <td>
+                                    <label>Preferd location:-</label>
+                                </td>
+                                <td>
+                                    <select name="location" multiple>
+                                        <option value="" disabled="disabled">Select Three locations</option>
+                                        <option value="Ahmedabad">Ahmedabad</option>
+                                        <option value="Baroda">Baroda</option>
+                                        <option value="Rajkot">Rajkot</option>
+                                        <option value="Surat">Surat</option>
+                                    </select>
+                                    <span id="location" class="error"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label>Notice Period:-</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="noticeperiod" value="" size="10" />
+                                    <span id="noticeperiod" class="error"></span>
+                                </td>
+                                <td>
+                                    <label>Expacted CTC:-</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="expacted_ctc" value="" size="10" />
+                                    <span id="expacted_ctc" class="error"></span>
+                                </td>
+                                <td>
+                                    <label>Current CTC:-</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="current_ctc" value="" size="10" />
+                                    <span id="current_ctc" class="error"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label>Department:-</label>
+                                </td>
+                                <td>
+                                    <select name="department">
+                                        <option value="">select department</option>
+                                        <option value="developer">Developer</option>
+                                        <option value="designer">Designer</option>
+                                        <option value="marketing">Marketing</option>
+                                    </select>
+                                    <span id="department" class="error"></span>
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="btn-container">
+            <input type="button" name="btn" value="Prev" id="prevBtn" onclick="nextPrev(-1)" />
+            <input type="button" name="btn" value="Next" id="nextBtn" onclick="nextPrev(1)" />
+        </div>
+        <input type="submit" value="submit" id="submit" class="next" onclick="submitdata()" />
+
+
+    </div>
+    
+    <script src="/JS/Employee/index.js"></script>
+    <script src="/JS/Employee/scripts/basic_details_fetch.js"></script>
+    <script src="/JS/Employee/scripts/education_details_validation.js"></script>
+    <script src="/JS/Employee/scripts/work_details_validation.js"></script>
+
+</body>
+
+</html>
