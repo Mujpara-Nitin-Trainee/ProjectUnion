@@ -188,7 +188,7 @@ body{
     padding: 10px;
 }
 
-a{
+.home-link{
     text-decoration: none;
     color: black;
     border: 1px solid black;

@@ -15,7 +15,8 @@ const auth = (req,res,next) => {
             // console.log(data);
             return next();
         }catch(err){
-            return res.sendStatus(403);
+            res.redirect('/api/user/login');
+            // return res.sendStatus(403);
         }   
     }
 
