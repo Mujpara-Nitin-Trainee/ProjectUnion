@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Event Listners</title>
+
+    <style>
+
+        body{
+            background-color: rgb(46, 139, 87);;
+        }
+
+        #main{
+            background-color: rgb(220, 228, 226);
+            padding:5px;
+        }
+
+        table{
+            background-color:rgb(220, 228, 226);
+            margin-top: 20px;
+            width: 500px;
+            height: 500px;
+            margin-bottom: 10px;
+        }
+
+        tr,td{
+            width: 150px;
+            height: 150px;
+            padding: 10px;
+            border: 1px solid black;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+    </style>
+
+</head>
+
+<!-- <body onload="onloadmessage()" onunload="unloadmessage()" onbeforeunload="return beforeunloadmessage()"> -->
+
+<body>
+
+    <center>
+        <h1>Nitin Mujpara 24DEV084 31/01/2024</h1>
+        <h3><u>JavaScript EventListners</u></h3>
+        <table>
+            <tr>
+                <td>
+                    <h4 onclick="changetext(id)">Click Here</h4>
+                </td>
+                <td>
+                    <h4 onload="onloadmessage()">Onload Event</h4>
+                </td>
+                <td>
+                    <h4>Oninput Event</h4>
+                </td>
+                <td>
+                    <h4>Onchange Event</h4>
+                </td>
+                <td>
+                    <div onmouseover="mOver(this)" onmouseout="mOut(this)">
+                        <h4>Mouseover and MouseOut Event</h4>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div onmousedown="mDown(this)" onmouseup="mUp(this)" style="text-align: center;">
+                        <h4>onmouse up event Triggerd</h4>
+                    </div>
+                </td>
+                <td>
+                    <h4 onmousemove="mMove(this)" onmouseout="mMovet(this)">onmousemove Event Listner</h4>
+                </td>
+                <td>
+                    <label>
+                        <h4>onFocus Event. Click on textbox</h4>
+                    </label>
+                    <input type="text" onfocus="focusmessage(this)">
+                </td>
+                <td>
+                    <label>
+                        <h4>onblur Event</h4>
+                    </label>
+                    <input type="text" id="name" onblur="onblurmessage()">
+                </td>
+                <td>
+                    <label>
+                        <h4>onChange Event</h4>
+                    </label>
+                    <select id="tech_language" onchange="onchangemessage()">
+                        <option value="Html">Html</option>
+                        <option value="Css">CSS</option>
+                        <option value="javascript">JavaScript</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div id="singleclick" oncontextmenu="oncontextmessage()"
+                        style="border: 1px solid black; padding:3px;">
+                        <h4>Right click on the text</h4>
+                    </div>
+                    <div id="myDiv" style="visibility: hidden;">
+                        <p>
+                        <h4>oncontextmenu event Triggerd!</h4>
+                        </p>
+                    </div>
+                </td>
+
+                <td>
+                    <div id="dbclick" ondblclick="ondblmessage()" style="border: 1px solid black; padding:2px;">
+                        <h4>Double click on the text</h4>
+                    </div>
+                    <div id="myDiv2" style="visibility: hidden;">
+                        <p>
+                        <h4>ondblclick event Triggerd!</h4>
+                        </p>
+                    </div>
+                </td>
+
+                <td>
+                    <label>
+                        <h4>onkeydown Event</h4>
+                    </label>
+                    <label>
+                        <h5>Press key in input box</h5>
+                    </label>
+                    <input type="text" onkeydown="keydownmessage()">
+                    <p id="keydown"></p>
+                </td>
+
+                <td>
+                    <label>
+                        <h4>onkeypress</h4>
+                    </label>
+                    <input type="text" onkeypress="keypressmessage()">
+                </td>
+                <td>
+                    <label>
+                        <h4>onkeyup Event</h4>
+                    </label>
+                    <label>converting lowercase to uppercase we undestand onkeyup event</label>
+                    <input type="text" onkeyup="keyupmessage()" id="txt">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>
+                        <h4>oninput</h4>
+                    </label>
+                    <input type="text" oninput="oninputmessage()" id="itxt">
+                    <p id="oninputtext"></p>
+                </td>
+                <td>
+                    <label>
+                        <h4>onwheel</h4>
+                    </label>
+                    <p onwheel="wheelmessage()" style="border: 1px solid black;" id="smsg"> Scroll Down Here!</p>
+                </td>
+                <td>
+                    <label>
+                        <h4>onselect</h4>
+                    </label>
+                    <input type="text" value="Nitin Mujpara" onselect="selectmessage()">
+                </td>
+                <td>
+                    <label>
+                        <h4>onunload</h4>
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <h4>onbeforeunload</h4>
+                    </label>
+                    <a href="file:///home/nitin-mujpara/Documents/Job_Application4.html">click here to trigger
+                        onbeforeunload</a>
+                </td>
+            </tr>
+
+        </table>
+
+        <a id="main" href="/api/user/home">Click Here To Redirect Home Page</a>
+
+    </center>
+
+    <script>
+        function changetext(id) {
+            id.innerHtml = "onClick Event Triggerd";
+            alert("onclick event triggerd");
+        }
+
+        function onloadmessage() {
+            alert("Onload event Triggerd!");
+        }
+
+        function mOver(obj) {
+            obj.style.color = "red";
+        }
+
+        function mOut(obj) {
+            obj.style.color = "green";
+        }
+
+        function mDown(obj) {
+            obj.style.backgroundColor = "Yellow";
+            obj.innerHtml = "onmousedown Event Triggerd!";
+        }
+
+        function mUp(obj) {
+            obj.style.backgroundColor = "gray";
+            obj.innerHtml = "onmouseup Event Triggerd!";
+        }
+
+        function mMove(obj) {
+            obj.style.color = "lightgreen";
+        }
+
+        function mMovet(obj) {
+            obj.style.color = "black";
+        }
+
+        function focusmessage(x) {
+            x.style.background = "Pink";
+        }
+
+        function onblurmessage() {
+            let x = document.getElementById("name");
+            x.value = x.value.toUpperCase();
+        }
+
+        function onchangemessage() {
+            let msg = document.getElementById('tech_language').value;
+            alert("Selected Language is " + msg + "." + " onchage Event Triggered!");
+        }
+
+        function oncontextmessage() {
+            const div = document.getElementById("myDiv");
+            div.style.visibility = "visible";
+        }
+
+        function ondblmessage() {
+            const div = document.getElementById("myDiv2");
+            div.style.visibility = "visible";
+        }
+
+        function keydownmessage() {
+            document.getElementById("keydown").innerHTML = "onkeydown event triggerd!";
+        }
+
+        function keypressmessage() {
+            alert("onkeypress event triggered!");
+        }
+
+        function keyupmessage() {
+            let x = document.getElementById("txt");
+            x.value = x.value.toUpperCase();
+        }
+
+        function oninputmessage() {
+            let text = document.getElementById("itxt").value;
+
+            document.getElementById("oninputtext").innerHTML = "You Wrote: " + text;
+
+        }
+
+        function wheelmessage() {
+            const smsg = document.getElementById("smsg");
+            smsg.style.fontSize = "35px";
+        }
+
+        function selectmessage() {
+            alert("onselect event triggerd;");
+        }
+
+        function unloadmessage() {
+            alert("onunload event triggerd;");
+        }
+
+        function beforeunloadmessage() {
+            return "onbeforeunload event triggerd";
+        }
+    </script>
+</body>
+
+</html>

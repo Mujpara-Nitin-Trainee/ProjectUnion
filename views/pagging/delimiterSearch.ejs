@@ -12,6 +12,7 @@
             body{
                 margin: 0;
                 padding: 0;
+                background-color:  	rgb(46, 139, 87);
             }
             .container{
                 max-width: 1170px;
@@ -38,6 +39,7 @@
                 background-color: aquamarine; 
             }
             tr,td{
+                background-color: rgb(169, 179, 176);
                 padding: 8px;
                 border: 3px solid black;
             }
@@ -61,10 +63,14 @@
             .month-header{
                 display: flex;
             }
+            #main {
+                background-color: rgb(128, 199, 181);
+                padding: 5px;
+            }
         </style>
     </head>
     <body>
-        <h1>Hello World From Delimiter Search Page</h1>
+        <h1>Delimiter Searching Page</h1>
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -142,7 +148,8 @@
                         <% } %>
                 <% } %>
             </div>
-
+            <center><a id="main" href="/api/user/home"
+                >Click Here To Redirect Home Page</a></center>
         </div>
     </body>
 </html>

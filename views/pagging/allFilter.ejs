@@ -16,6 +16,7 @@
         body {
             margin: 0;
             padding: 0;
+            background-color:  	rgb(46, 139, 87);
         }
 
         .container {
@@ -42,11 +43,12 @@
         th {
             padding: 8px;
             border: 3px solid black;
-            background-color: aquamarine;
+            background-color: rgb(120, 199, 173);
         }
 
         tr,
         td {
+            background-color: rgb(169, 179, 176);
             padding: 8px;
             border: 3px solid black;
         }
@@ -83,7 +85,10 @@
         .arrows {
             display: inline-grid;
         }
-
+        #main {
+            background-color: rgb(220, 228, 226);
+            padding: 5px;
+        }
         h1,
         h2 {
             text-align: center;
@@ -99,84 +104,94 @@
     <h1>Nitin Mujpara 24DEV084 Grid Task 01/03/2024</h1>
     <h2>Dynamically Implemented Grid</h2>
 
+
+
+
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="filter">
-                    <select>
-                        <option onclick="filterbymonth(0)" <%if(date==0) {%> selected <%}%>>DEC 2023</option>
-                        <option onclick="filterbymonth(1)" <%if(date==1) {%> selected <%}%>>JAN 2024</option>
-                        <option onclick="filterbymonth(2)" <%if(date==2) {%> selected <%}%>>FEB 2024</option>
-                    </select>
-                </div>
-                <p id="order">
-                    <%= order %>
-                </p>
-                <p id="rows" style="display: none;">
-                    <%= rows %>
-                </p>
-                <p id="column">
-                    <%= column %>
-                </p>
-                <p id="date" style="display: none;">
-                    <%= date %>
-                </p>
+        <div class="wrapper">
+            <div class="row">
+                <div class="col">
+                    <div class="filter">
+                        <select>
+                            <option onclick="filterbymonth(0)" <%if(date==0) {%> selected <%}%>>DEC 2023</option>
+                            <option onclick="filterbymonth(1)" <%if(date==1) {%> selected <%}%>>JAN 2024</option>
+                            <option onclick="filterbymonth(2)" <%if(date==2) {%> selected <%}%>>FEB 2024</option>
+                        </select>
+                    </div>
+                    <p id="order" style="display: none;">
+                        <%= order %>
+                    </p>
+                    <p id="rows" style="display: none;">
+                        <%= rows %>
+                    </p>
+                    <p id="column" style="display: none;">
+                        <%= column %>
+                    </p>
+                    <p id="date" style="display: none;">
+                        <%= date %>
+                    </p>
 
-                <table>
-                    <tr>
-                        <% for(let i=0; i < rows.length; i++ ) { %>
-                            <th onclick="orderby('<%= rows[i] %>','<%= order %>')">
-                                <%= rows[i] %>
-                                    <div class="arrows">
-
-                                        <% if(rows[i]==column && order=="desc" ) { %>
-                                            <button id="asc"><i class="fa-solid fa-arrow-up"></i></button>
-                                        <% } else if(rows[i]==column && order=="asc" ){ %>
-                                            <button id="asc"><i class="fa-solid fa-arrow-down"></i></button>
-                                        <% } else { %>
-                                            <button id="asc"><i class="fa-solid fa-arrow-up"></i></button>
-                                            <button id="desc"><i class="fa-solid fa-arrow-down"></i></button>
-                                        <% } %>
-                                    </div>
-                            </th>
-                            <% } %>
-                    </tr>
-
-                    <% for(let i=0; i< student.length; i++) { %>
+                    <table>
                         <tr>
-                            <% for(let j=0; j < rows.length; j++) { %>
-                                <td>
-                                    <%= student[i][rows[j]] %>
-                                </td>
+                            <% for(let i=0; i < rows.length; i++ ) { %>
+                                <th onclick="orderby('<%= rows[i] %>','<%= order %>')">
+                                    <%= rows[i] %>
+                                        <div class="arrows">
+
+                                            <% if(rows[i]==column && order=="desc" ) { %>
+                                                <button id="asc"><i class="fa-solid fa-arrow-up"></i></button>
+                                                <% } else if(rows[i]==column && order=="asc" ){ %>
+                                                    <button id="asc"><i class="fa-solid fa-arrow-down"></i></button>
+                                                    <% } else { %>
+                                                        <button id="asc"><i class="fa-solid fa-arrow-up"></i></button>
+                                                        <button id="desc"><i
+                                                                class="fa-solid fa-arrow-down"></i></button>
+                                                        <% } %>
+                                        </div>
+                                </th>
                                 <% } %>
                         </tr>
-                        <% } %>
-                </table>
-                <div class="row">
-                    <div class="pagging">
-                        <div>
-                            <p id="query" style="display: none;">
-                                <%= %>
-                            </p>
-                            <!-- <p id="records" ><%=  %></p> Total Records... -->
-                        </div>
 
-                        <div class="btn-container">
-                            <button id="extream_left" onclick="onfirst()" <% if(page==1) { %> disabled<% } %>> << 
-                                </button>
-                                        <button id="left-btn" onclick="changepage(-1)" <% if(page==1) { %> disabled<% }
-                                                %>> < </button>
-                                                    Page <p id="pagecount">
-                                                        <%= page %>
-                                                    </p>
-                                                    <button id="right-btn" onclick="changepage(1)" <% if(page==4) { %>
-                                                        disabled<% } %> > > </button>
-                                                    <button id="extream_right" onclick="onlast()" <% if(page==4) { %>
-                                                        disabled<% } %>> >> </button>
+                        <% for(let i=0; i< student.length; i++) { %>
+                            <tr>
+                                <% for(let j=0; j < rows.length; j++) { %>
+                                    <td>
+                                        <%= student[i][rows[j]] %>
+                                    </td>
+                                    <% } %>
+                            </tr>
+                            <% } %>
+                    </table>
+                    <div class="row">
+                        <div class="pagging">
+                            <div>
+                                <p id="query" style="display: none;">
+                                    <%= %>
+                                </p>
+                                <!-- <p id="records" ><%=  %></p> Total Records... -->
+                            </div>
+
+                            <div class="btn-container">
+                                <button id="extream_left" onclick="onfirst()" <% if(page==1) { %> disabled<% } %>> <<
+                                            </button>
+                                            <button id="left-btn" onclick="changepage(-1)" <% if(page==1) { %> disabled
+                                                <% } %>> < </button>
+                                                        Page <p id="pagecount">
+                                                            <%= page %>
+                                                        </p>
+                                                        <button id="right-btn" onclick="changepage(1)" <% if(page==4) {
+                                                            %>
+                                                            disabled<% } %> > > </button>
+                                                        <button id="extream_right" onclick="onlast()" <% if(page==4) {
+                                                            %>
+                                                            disabled<% } %>> >> </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <center><a id="main" href="/api/user/home"
+            >Click Here To Redirect Home Page</a></center>
         </div>
     </div>
 
@@ -209,7 +224,7 @@
             if (order === "desc") {
                 o = "asc";
             }
-            
+
             document.getElementById('order').innerHTML = o;
             document.getElementById('column').innerHTML = column;
 

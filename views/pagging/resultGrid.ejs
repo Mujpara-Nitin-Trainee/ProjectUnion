@@ -1,186 +1,183 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Student's Result Log</title>
-        <style>
-            *{
-                box-sizing: border-box;
-            }
-            body{
-                margin: 0;
-                padding: 0;
-            }
-            .container{
-                max-width: 1170px;
-                margin: 0 auto;
-                padding: 10px 20px;
-            }
-            .row{
-                display: flex;
-                flex-wrap: wrap;
-            }
-            table{
-                border: 2px solid black;
-                border-collapse: collapse;
-            }
-            th{
-                padding: 8px;
-                border: 3px solid black;
-                background-color: aquamarine; 
-            }
-            tr,td{
-                padding: 8px;
-                border: 3px solid black;
-            }
-            .filter{
-                margin: 30px;
-                margin-left: 340px;
-            }
-            .pagging{
-                padding-left: 550px;
-            }
+  <head>
+    <title>Student's Result Log</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: rgb(46, 139, 87);
+      }
+      .container {
+        max-width: 1170px;
+        margin: 0 auto;
+        padding: 10px 20px;
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      table {
+        border: 2px solid black;
+        border-collapse: collapse;
+      }
+      th {
+        padding: 8px;
+        border: 3px solid black;
+        background-color: rgb(46, 219, 121);
+      }
+      tr,
+      td {
+        padding: 8px;
+        border: 3px solid black;
+        background-color: rgb(216, 219, 218);
+      }
+      .filter {
+        margin: 30px;
+        margin-left: 340px;
+      }
+      .pagging {
+        padding-left: 440px;
+      }
 
-            .btn-container{
-                align-items: center;
-                margin: 10px;
-                display: inline-flex;
-            }
-            .btn-container button{
-                padding:10px 10px;
-                margin: 10px;
-            }
-            .month-header{
-                display: flex;
-            }
-        </style>
+      .btn-container {
+        align-items: center;
+        margin: 10px;
+        display: inline-flex;
+      }
+      .btn-container button {
+        padding: 10px 10px;
+        margin: 10px;
+      }
+      .month-header {
+        display: flex;
+      }
+      #main {
+        background-color: rgb(220, 228, 226);
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1>Nitin Mujpara 24DEV084</h1>
+    </center>
 
-    </head>
-    <body>
+    <div class="container">
+      <div class="row">
+        <table>
+          <tr>
+            <th rowspan="2">Student Id</th>
+            <th rowspan="2">Student Name</th>
+            <th colspan="2">terminal</th>
+            <th colspan="2">Prelims</th>
+            <th colspan="2">Mains</th>
+            <th>Final</th>
+            <th rowspan="2">Result Views</th>
+            <th rowspan="2">Attendance Views</th>
+          </tr>
+          <tr>
+            <th>Practical</th>
+            <th>Theory</th>
+            <th>Practical</th>
+            <th>Theory</th>
+            <th>Practical</th>
+            <th>Theory</th>
+            <th>Total Marks</th>
+          </tr>
+          <% student.forEach((e) => { %>
+          <tr>
+            <td><%= e.Student_id %></td>
+            <td><%= e.name %></td>
+            <td><%= e.T_practical_marks %></td>
+            <td><%= e.T_theory_marks %></td>
+            <td><%= e.P_practical_marks %></td>
+            <td><%= e.P_theory_marks %></td>
+            <td><%= e.F_practical_marks %></td>
+            <td><%= e.F_theory_marks %></td>
+            <td>
+              <%= (Number(e.T_practical_marks) + Number(e.T_theory_marks) +
+              Number(e.P_practical_marks) + Number(e.P_theory_marks) +
+              Number(e.F_practical_marks) + Number(e.F_theory_marks)) %>
+            </td>
+            <td>
+              <button onclick="viewresult(`<%= e.Student_id %>`)">View</button>
+            </td>
+            <td>
+              <button onclick="viewattendace(`<%= e.Student_id %>`)">
+                View
+              </button>
+            </td>
+          </tr>
+          <% }) %>
+        </table>
+      </div>
 
-        <center>
-            <h1>Nitin Mujpara 24DEV084</h1>
-        </center>
-
-        <div class="container">
-            <div class="row">
-                <table>
-                    <tr>
-                        <th rowspan="2">Student Id</th>
-                        <th rowspan="2">Student Name</th>
-                        <th colspan="2">terminal</th>
-                        <th colspan="2">Prelims</th>
-                        <th colspan="2">Mains</th>
-                        <th>Final</th>
-                        <th rowspan="2">Result Views</th>
-                        <th rowspan="2">Attendance Views</th>
-                    </tr>
-                    <tr>
-                        <th>Practical</th>
-                        <th>Theory</th>
-                        <th>Practical</th>
-                        <th>Theory</th>
-                        <th>Practical</th>
-                        <th>Theory</th>
-                        <th>Total Marks</th>
-                    </tr>
-                    <% student.forEach((e) => { %> 
-                        <tr>
-                            <td>
-                               <%= e.Student_id %>
-                            </td>
-                            <td>
-                                <%= e.name %>
-                            </td>
-                            <td>
-                                <%= e.T_practical_marks %>
-                            </td>
-                            <td>
-                                <%= e.T_theory_marks %>
-                            </td>
-                            <td>
-                                <%= e.P_practical_marks %>
-                            </td>
-                            <td>
-                                <%= e.P_theory_marks %>
-                            </td>
-                            <td>
-                                <%= e.F_practical_marks %>
-                            </td>
-                            <td>
-                                <%= e.F_theory_marks %>
-                            </td>
-                            <td>
-                                <%= (Number(e.T_practical_marks) + Number(e.T_theory_marks) + 
-                                Number(e.P_practical_marks) + Number(e.P_theory_marks) + 
-                                Number(e.F_practical_marks) + Number(e.F_theory_marks)) %>
-                            </td>
-                            <td><button onclick="viewresult(`<%= e.Student_id %>`)">View</button></td>
-                            <td><button onclick="viewattendace(`<%= e.Student_id %>`)">View</button></td>
-                        </tr>
-                    <% }) %>
-                </table>
-            </div>
-
-            <div class="row">
-                <div class="pagging">
-                    <div class="btn-container">
-                        <button onclick="onfirst()"><<</button>
-                        <button onclick="changepage(-1)"><</button>
-                        Page <p id="pagecount"><%= page %></p>
-                        <button onclick="changepage(1)">></button>
-                        <button onclick="onlast()">>></button> 
-                    </div>
-                </div>
-            </div>
+      <div class="row">
+        <div class="pagging">
+          <div class="btn-container">
+            <button onclick="onfirst()"><<</button>
+            <button onclick="changepage(-1)"><</button>
+            Page
+            <p id="pagecount"><%= page %></p>
+            <button onclick="changepage(1)">></button>
+            <button onclick="onlast()">>></button>
+          </div>
+          <br />
+          <a id="main" href="/api/user/home"
+            >Click Here To Redirect Home Page</a
+          >
         </div>
+      </div>
+    </div>
 
-        <script>
+    <script>
+      let currentpage = 1;
+      let minpage = 1;
+      let maxpage = 4;
 
-            let currentpage = 1;
-            let minpage = 1;
-            let maxpage = 4;
+      function viewresult(id) {
+        let sid = Number(id);
 
-            function viewresult(id){
-                let sid = Number(id);
-                
-                window.location = `http://localhost:3000/api/user/pagging/resultgrid/singleResult?id=${sid}`
-            }
+        window.location = `http://localhost:3000/api/user/pagging/resultgrid/singleResult?id=${sid}`;
+      }
 
-            function viewattendace(id){
-                let sid = Number(id);
-                
-                window.location = `http://localhost:3000/api/user/pagging/resultgrid/attendanceReport?id=${sid}`
-            }
+      function viewattendace(id) {
+        let sid = Number(id);
 
-            function changepage(val){
-                currentpage = Number(document.getElementById("pagecount").innerHTML);
-                currentpage = currentpage + val;
+        window.location = `http://localhost:3000/api/user/pagging/resultgrid/attendanceReport?id=${sid}`;
+      }
 
-                if(currentpage > 4 || currentpage < 1){
-                    return 0;
-                }
+      function changepage(val) {
+        currentpage = Number(document.getElementById("pagecount").innerHTML);
+        currentpage = currentpage + val;
 
+        if (currentpage > 4 || currentpage < 1) {
+          return 0;
+        }
 
-                document.getElementById("pagecount").innerHTML = currentpage;
-                window.location = `http://localhost:3000/api/user/pagging/resultgrid?page=${currentpage}`
-            }
+        document.getElementById("pagecount").innerHTML = currentpage;
+        window.location = `http://localhost:3000/api/user/pagging/resultgrid?page=${currentpage}`;
+      }
 
-            function onfirst(){
-                document.getElementById('pagecount').innerHTML = 1;
-                currentpage = 1;
+      function onfirst() {
+        document.getElementById("pagecount").innerHTML = 1;
+        currentpage = 1;
 
-                document.getElementById("pagecount").innerHTML = currentpage;
-                window.location = `http://localhost:3000/api/user/pagging/resultgrid?page=${currentpage}`
-            }
+        document.getElementById("pagecount").innerHTML = currentpage;
+        window.location = `http://localhost:3000/api/user/pagging/resultgrid?page=${currentpage}`;
+      }
 
-            function onlast(){
-                document.getElementById('pagecount').innerHTML = 4;
-                currentpage = 4;
+      function onlast() {
+        document.getElementById("pagecount").innerHTML = 4;
+        currentpage = 4;
 
-                document.getElementById("pagecount").innerHTML = currentpage;
-                window.location = `http://localhost:3000/api/user/pagging/resultgrid?page=${currentpage}`
-            } 
-        </script>
-
-    </body>
+        document.getElementById("pagecount").innerHTML = currentpage;
+        window.location = `http://localhost:3000/api/user/pagging/resultgrid?page=${currentpage}`;
+      }
+    </script>
+  </body>
 </html>

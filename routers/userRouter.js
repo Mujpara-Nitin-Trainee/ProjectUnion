@@ -6,6 +6,10 @@ router.get('/home',auth,(req,res) => {
     res.render('Home');
 })
 
+router.get('/jsEvents',auth,(req,res) => {
+    res.render('jsEventListeners');
+})
+
 router.get('/dynamic_table',auth,(req,res) => {
     res.render('dynamic_table');
 })
