@@ -31,7 +31,7 @@
       }
     </style>
   </head>
-  <body onload="handlegame()">
+  <body>
     <div id="game">
       <h1>JS Task 2 Nitin Mujpara 2/2/2024 24DEV084</h1>
       <center>
@@ -51,7 +51,8 @@
             <td></td>
           </tr>
         </table>
-
+        <br><br>
+        <button onclick="handlegame()" id="btns">Start Game</button><br><br>
         <a id="main" href="/api/user/home">Click Here To Redirect Home Page</a>  
 
       </center>
@@ -59,96 +60,127 @@
   </body>
 
   <script>
-    let number = 0;
-    //let timelimit = 10;
-    const currtime = document.getElementById("seconds");
-    const btn = document.createElement("button");
-    const body = document.getElementsByTagName("body");
-    btn.addEventListener("click", playagain);
+   var time;
+let number = 0;
+let timelimit = 20;
+const currtime = document.getElementById("seconds")
+const btn = document.createElement("button");
+const body = document.getElementsByTagName("body");
+btn.addEventListener("click",playagain);
 
-    function playagain() {
-      window.location.reload();
-    }
+function playagain(){
+    window.location.reload();
+}
+    
+function restart(){
+    document.getElementById("game").innerHTML = "<h2>Your Score is :- "+number+"</h2>";
+    btn.id = "resetbutton";
+    btn.innerHTML = "Play Again...";
 
-    function restart() {
-      document.getElementById("game").innerHTML =
-        "<h2>Your Score is :- " + number + "</h2>";
-      btn.id = "resetbutton";
-      btn.innerHTML = "Play Again...";
+    document.body.appendChild(btn);
+    document.body.style.backgroundColor = "lightblue";    
+}
 
-      document.body.appendChild(btn);
-      document.body.style.backgroundColor = "lightblue";
-    }
 
-    function handlegame() {
-      const td = document.querySelectorAll("td");
-      // const tr = document.querySelectorAll("tr");
+function handlegame(){
 
-      const randombox = Math.floor(Math.random() * (td.length - 1 - 0 + 1)) + 0;
-      // const randomcol = Math.floor(Math.random() * ((td.length-1) - 0 + 1) ) + 0;
-      // const randomrow = Math.floor(Math.random() * ((td.length-1) - 0+ 1) ) + 0;
-      // console.log(randomcol + " Random Column Number ");
-      // console.log(randomrow + " Random Row Number");
+    time = setInterval(countdown,1000);
 
-      addlistner(randombox, td);
-    }
+    const td = document.querySelectorAll("td");
+    // const tr = document.querySelectorAll("tr");
 
-    function addlistner(randombox, td) {
-      const color = cordinategenrator();
+    const randombox = Math.floor(Math.random() * ((td.length-1) - 0 + 1) ) + 0;
+    // const randomcol = Math.floor(Math.random() * ((td.length-1) - 0 + 1) ) + 0;
+    // const randomrow = Math.floor(Math.random() * ((td.length-1) - 0+ 1) ) + 0;
+    // console.log(randomcol + " Random Column Number ");
+    // console.log(randomrow + " Random Row Number");
 
-      for (i = 0; i < td.length; i++) {
-        // td[i].innerHTML = i;
 
-        if (randombox == i) {
-          // console.log("Page Hit");
-          // td[i].innerHTML = "Nitin";
-          //   number++;
-          td[i].style.backgroundColor =
-            "rgb(" + color.r + "," + color.g + "," + color.b + ")";
-          td[i].style.opacity = "0.8";
-        } else {
-          td[i].style.backgroundColor =
-            "rgb(" + color.r + "," + color.g + "," + color.b + ")";
-          td[i].style.opacity = "1";
-          td[i].removeEventListener("click", increasesquare, true);
+    addlistner(randombox,td);
+
+}
+
+    function countdown(){
+        if(timelimit == 0){        
+            restart();
+
+        }else{
+            currtime.innerHTML = timelimit + " Sec Remain";
+            timelimit--;
         }
-        td[randombox].addEventListener("click", increasesquare, true);
-      }
     }
 
-    function cordinategenrator() {
-      const r = Math.floor(Math.random() * (255 - 0 + 1 + 0));
-      const g = Math.floor(Math.random() * (255 - 0 + 1 + 0));
-      const b = Math.floor(Math.random() * (255 - 0 + 1 + 0));
 
-      return { r, b, g };
+function addlistner(randombox,td){
+    const color = cordinategenrator();
+
+    for(i =0; i < td.length ;i++){
+        // td[i].innerHTML = i;
+        
+        if(randombox == i){
+            // console.log("Page Hit");
+            // td[i].innerHTML = "Nitin";
+            //   number++;
+            td[i].style.backgroundColor = "rgb(" + color.r + "," + color.g + "," + color.b + ")";
+            td[i].style.opacity = "0.8";
+        }else{
+            td[i].style.backgroundColor = "rgb(" + color.r + "," + color.g + "," + color.b + ")";
+            td[i].style.opacity = "1";
+            td[i].removeEventListener("click",increasesquare,true);
+        }
+        td[randombox].addEventListener("click",increasesquare,true);
     }
+}
 
-    function increasesquare() {
-      const table = document.getElementsByTagName("table");
-      const tr = table[0].getElementsByTagName("tr");
-      const td = tr[0].getElementsByTagName("td");
+function cordinategenrator(){
+    const r = Math.floor(Math.random()*((255-0+1)+0));
+    const g = Math.floor(Math.random()*((255-0+1)+0));
+    const b = Math.floor(Math.random()*((255-0+1)+0));
 
-      addcolumn(table, tr, td);
-      addrow(table, tr, td);
-      handlegame();
-      number++;
-      document.getElementById("Scores").innerHTML = number + " Score";
+    return {r,b,g}
+}
+
+
+function increasesquare(){
+
+    const table = document.getElementsByTagName("table");
+    const tr = table[0].getElementsByTagName("tr");
+    const td = tr[0].getElementsByTagName("td");
+
+    addcolumn(table,tr,td);
+    addrow(table,tr,td);
+    handlegame();
+    number++;
+    document.getElementById("Scores").innerHTML = number + " Score";
+
+    
+
+    
+}
+
+// Add Row Function
+function addrow(table,tr,td){
+    table[0].appendChild(document.createElement("tr"));
+    
+    for(i=0;i<td.length;i++){
+        if(td.length <= 10){
+            table[0].lastChild.appendChild(document.createElement("td"));
+        }else{
+            restart();
+        }
     }
+}
+// Add Column Function
+function addcolumn(table,tr,td){
 
-    // Add Row Function
-    function addrow(table, tr, td) {
-      table[0].appendChild(document.createElement("tr"));
+    for(i=0;i<tr.length;i++){
+        if(tr.length <= 10){
+            tr[i].appendChild(document.createElement("td"));
+        }else{
+            restart();
+        }
+    }
+}
 
-      for (i = 0; i < td.length; i++) {
-        table[0].lastChild.appendChild(document.createElement("td"));
-      }
-    }
-    // Add Column Function
-    function addcolumn(table, tr, td) {
-      for (i = 0; i < tr.length; i++) {
-        tr[i].appendChild(document.createElement("td"));
-      }
-    }
   </script>
 </html>
