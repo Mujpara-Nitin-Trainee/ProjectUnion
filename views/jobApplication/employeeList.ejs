@@ -41,37 +41,47 @@
     </style>
   </head>
   <body>
-    <table>
-      <tr>
-        <% rows.forEach((e) => { %>
-        <th><%= e %></th>
-        <% }) %>
-        <th>Update</th>
-      </tr>
+    <div class="container">
+      <div class="wrapper">
+        <div class="row">
+          <div class="col">
+            <table>
+              <tr>
+                <% rows.forEach((e) => { %>
+                <th><%= e %></th>
+                <% }) %>
+                <th>Update</th>
+              </tr>
+        
+              <% employee.forEach((e) => { %>
+              <tr>
+                <td><%= e.id %></td>
+                <td><%= e.firstname %></td>
+                <td><%= e.lastname %></td>
+                <td><%= e.email %></td>
+                <td><%= e.mobileno %></td>
+                <td><% if(e.gender == 1) { %> Male <% } else { %> Female <% } %></td>
+                <td><%= (e.dob).toLocaleString() %></td>
+                <td><%= e.address %></td>
+                <td><%= e.city %></td>
+                <td><%= e.state %></td>
+                <td><%= e.zipcode %></td>
+                <td><%= e.relation_status %></td>
+                <td><%= (e.created_date).toLocaleString() %></td>
+                <td>
+                  <form action="/api/user/jobForm/updatePage" method="Post">
+                    <input type="hidden" name="id" value="<%= e.id %>" />
+                    <input type="submit" name="button" value="Submit" />
+                  </form>
+                </td>
+              </tr>
+              <% }) %>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <% employee.forEach((e) => { %>
-      <tr>
-        <td><%= e.id %></td>
-        <td><%= e.firstname %></td>
-        <td><%= e.lastname %></td>
-        <td><%= e.email %></td>
-        <td><%= e.mobileno %></td>
-        <td><% if(e.gender == 1) { %> Male <% } else { %> Female <% } %></td>
-        <td><%= (e.dob).toLocaleString() %></td>
-        <td><%= e.address %></td>
-        <td><%= e.city %></td>
-        <td><%= e.state %></td>
-        <td><%= e.zipcode %></td>
-        <td><%= e.relation_status %></td>
-        <td><%= (e.created_date).toLocaleString() %></td>
-        <td>
-          <form action="/api/user/jobForm/updatePage" method="Post">
-            <input type="hidden" name="id" value="<%= e.id %>" />
-            <input type="submit" name="button" value="Submit" />
-          </form>
-        </td>
-      </tr>
-      <% }) %>
-    </table>
+    
   </body>
 </html>
