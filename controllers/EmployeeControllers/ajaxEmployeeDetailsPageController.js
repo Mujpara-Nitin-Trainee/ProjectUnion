@@ -90,34 +90,32 @@ const AjaxEmployeeDetailsUpdatePage = async(req,res) => {
               }
           }
           // console.log(langcap_checked);
+          // Employee's language Capability Checked
           let answer_langcapability = [];
   
           while (langcap_checked.length) answer_langcapability.push(langcap_checked.splice(0, 3));
           // console.log(answer_langcapability);
   
-          // console.log(tech);
+
           // Employee's Tech Checked
           let tech_checked = [];
           let tech_cap_checked = [];
   
+          // Employee's Technology checked
           tech_checked = tech.map(item => technology.some(lang_obj => lang_obj.tech_name === (item).toLowerCase()) ? 1 : 0);
-          // console.log(tech_checked);
-  
-          let t = 0;
-          for (let i = 0; i < tech.length; i++) {
-              // console.log(t);
-                  if ((tech[i]).toLowerCase() === technology[t].tech_name) {
-                      // console.log(tech_emp[t].tech_capability);
-                          tech_cap_checked.push(technology[t].tech_capability);
-                  } else {
-                      tech_cap_checked.push("");
-                      // console.log(0);
-                  }
+          
+          // Employee's Technology level checked
+          for(let i=0,j=0; i < tech.length; i++){
+            if(tech[i] === technology[j].tech_name){
+                tech_cap_checked.push(technology[j].tech_capability);
+                j++;
+              }else{
+                tech_cap_checked.push("");
+            }
           }
-  
+
           // console.log(tech_cap_checked);
-          // console.log(tech_emp);
-          // console.log(basic[0].firstname);
+  
   
           let id = req.body.id;
   
