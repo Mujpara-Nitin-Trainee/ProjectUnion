@@ -1,10 +1,6 @@
 var page = 0;
 showTab(page);
 
-// var x = document.getElementsByClassName("col");
-// x[1].style.display = "block";
-// console.log(x[1]);
-
 function showTab(n) {
 
     var x = document.getElementsByClassName("col");
@@ -61,7 +57,7 @@ function validate(page) {
         let zipcode = document.forms['form']['zipcode'].value;
         let relation = document.forms['form']['relation'].value;
 
-
+        console.log(gender);
 
         if (isEmpty(firstname)) {
             let message = document.getElementById('firstname_error');
@@ -123,7 +119,7 @@ function validate(page) {
             isvalid = false;
         }
 
-        if (isEmpty(gender)) {
+        if (gender == undefined || gender == "") {
             let message = document.getElementById('gender_error');
             message.innerHTML = "Filed Required*";
             message.style.color = "red";

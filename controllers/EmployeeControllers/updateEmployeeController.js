@@ -86,7 +86,9 @@ const employeeUpdate = async(req,res) => {
   
       const [response] = await employeeUpdateService(req.body,lang,capability,tech,level,company_name);
   
-      console.log(response);
+      if(response){
+        res.redirect("/api/user/home");
+      }
   
     }catch(err){
       console.log(err);

@@ -84,7 +84,11 @@ const employeeRegister = async (req, res) => {
       // console.log(req.body)
   
       const [employeeResponse] = await employeeRegisterService(req.body,lang,capability,tech,level,company_name);
-  
+
+      if(employeeResponse){
+        res.redirect("/api/user/home");
+      }
+
     } catch (err) {
       console.log(err);
     }
