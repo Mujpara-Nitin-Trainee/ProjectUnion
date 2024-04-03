@@ -130,7 +130,7 @@
                                         </td>
                                         <td>
                                             <select name="relation" id="relation">
-                                                <option>Select Any Relation</option>
+                                                <option value="">Select Any Relation</option>
                                                 <% relation.forEach((e)=> { %>
                                                     <option value="<%= e %>">
                                                         <%=e %>
@@ -251,10 +251,10 @@
                                     <% tech_capability.forEach((l)=> { %>
                                         <td>
                                             <input type="radio" name="<%= (e.concat(1)).toLowerCase() %>"
-                                                value="<%= l %>" id="<%= e.concat(l) %>">
+                                                value="<%= l %>" id="<%= (e.concat(l)).toLowerCase() %>">
                                         </td>
                                         <td>
-                                            <label for="<%= (e.concat(1)).toLowerCase() %>">
+                                            <label for="<%= (e.concat(l)).toLowerCase() %>">
                                                 <%= l %>
                                             </label>
                                         </td>

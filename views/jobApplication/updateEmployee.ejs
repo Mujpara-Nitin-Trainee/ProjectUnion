@@ -281,7 +281,7 @@
                                     >
                             </td>
                             <td>
-                                <label for="<%= (e.concat(1)).toLowerCase() %>">
+                                <label for="<%= (e.concat(l)).toLowerCase() %>">
                                     <%= l %>
                                 </label>
                             </td>
@@ -300,26 +300,44 @@
               </div>
               <span id="work_error" class="error"></span>
               <div class="workexperience">
+                <table>
                 <% work.forEach((e) => { %> 
                     <div class="workexperience">
-                        <label>Company Name:-</label>
-                        <input type="text" name="company_name[]" value="<%= e.company_name %>" />
-                        <span id="company_name" class="error"></span>
-                    
-                        <label>Designation:-</label>
-                        <input type="text" name="designation[]" value="<%= e.designation %>" />
-                        <span id="designation" class="error"></span>
-                    
-                        <label>Start Date:-</label>
-                        <input type="text" name="start_date[]" value="<%= (e.startdate).toLocaleString() %>" />
-                        <span id="start_date" class="error"></span>
-                    
-                        <label>End Date:-</label>
-                        <input type="text" name="end_date[]" value="<%= (e.enddate).toLocaleString() %>" />
-                        <span id="end_date" class="error"></span>
-                        <br><br>
+                      <tr>
+                        <td>
+                          <label>Company Name:-</label>
+                        </td>
+                        <td>
+                          <input type="text" name="company_name[]" value="<%= e.company_name %>" />
+                          <span id="company_name" class="error"></span>
+                        </td>
+                        <td>
+                          <label>Designation:-</label>
+                        </td>
+                        <td>
+                          <input type="text" name="designation[]" value="<%= e.designation %>" />
+                          <span id="designation" class="error"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label>Start Date:-</label>
+                        </td>
+                        <td>
+                          <input type="text" name="start_date[]" value="<%= (e.startdate).toLocaleString() %>" />
+                          <span id="start_date" class="error"></span>
+                        </td>
+                        <td>
+                          <label>End Date:-</label>
+                        </td>
+                        <td>
+                          <input type="text" name="end_date[]" value="<%= (e.enddate).toLocaleString() %>" />
+                          <span id="end_date" class="error"></span>
+                        </td>
+                      </tr>
                     </div>
                     <% }) %>
+                  </table>
               </div>
 
               <div class="workexpclone"></div>
