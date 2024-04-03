@@ -2,22 +2,19 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../middleware/auth");
 
-const {
-  pagging,
-  pageOrderby,
-  resultGrid,
-  pageWithAllFilter,
-  singleResult,
-  singleAttendance,
-  pageSearching,
-  pageSearchFilter,
-  pageSeachOptimium,
-  pageDelimiterSearch
-} = require("../controllers/paggingController");
+const {normalPagging,paggingOrderby} = require("../controllers/PaggingControllers/pageOrderbyController");
 
-router.get("/", auth, pagging);
+const {resultGrid,singleResult,singleAttendance} = require("../controllers/PaggingControllers/studentResultGridController");
 
-router.get("/orderby", auth, pageOrderby);
+const {pageWithAllFilter} = require("../controllers/PaggingControllers/paggingAllFilterController");
+
+const {pageSearching,pageSearchFilter,pageSeachOptimium} = require("../controllers/PaggingControllers/searchingWithPaggingController");
+
+const {pageDelimiterSearch} = require("../controllers/PaggingControllers/delimiterSearchingController");
+
+router.get("/", auth, normalPagging);
+
+router.get("/orderby", auth, paggingOrderby);
 
 router.get("/resultgrid", auth, resultGrid);
 router.get("/resultgrid/singleResult", auth, singleResult);
@@ -33,7 +30,6 @@ router.get("/searching/delimiterSearch",auth, (req,res) => {
     let rows;
     res.render('delimiterSearch',{rows});
 })
-
 router.post("/searching/delimiterSearch", auth, pageDelimiterSearch);
 
 router.get("/frontside", auth, (req,res) => {
