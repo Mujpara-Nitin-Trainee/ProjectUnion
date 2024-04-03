@@ -1,4 +1,4 @@
-const {paggingService,pageOrderbyService} = require("../../services/paggingService");
+const {paggingService,pageOrderbyService} = require("../../services/PaggingServices/pageOrderbyService");
 
 const normalPagging = async (req, res) => {
     try {

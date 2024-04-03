@@ -1,4 +1,4 @@
-const {pageDelimiterSearchService} = require("../../services/paggingService");
+const {pageDelimiterSearchService} = require("../../services/PaggingServices/delimiterSearchService");
 
 const pageDelimiterSearch = async(req,res) => {
     try{

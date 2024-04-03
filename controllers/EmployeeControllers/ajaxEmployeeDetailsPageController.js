@@ -1,5 +1,5 @@
-const { fetchStatesService,
-        fetchOptionService,
+const {fetchStatesService,fetchOptionService} = require("../../services/EmployeeServices/supportService");
+const { 
         fetchEmployeeService,
         fetchEmployeeEducationService,
         fetchEmployeeLanguageService,
@@ -7,7 +7,7 @@ const { fetchStatesService,
         fetchEmployeeWorkService,
         fetchEmployeeReferService,
         fetchEmployeePreferService
-    } = require("../../services/employeeService");
+    } = require("../../services/EmployeeServices/fetchEmployeeService");
 
 const AjaxEmployeeDetailsUpdatePage = async(req,res) => {
     try{
