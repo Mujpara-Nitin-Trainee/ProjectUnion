@@ -1,4 +1,4 @@
-const {fetchStatesService,fetchOptionService} = require('../../services/employeeService');
+const {fetchStatesService,fetchOptionService} = require('../../services/EmployeeServices/supportService');
 
 const jobApkAjaxHome = async (req,res) => {
     try{

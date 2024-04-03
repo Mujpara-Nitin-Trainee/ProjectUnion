@@ -1,4 +1,4 @@
-const {employeeRegisterService} = require("../../services/employeeService");
+const {employeeRegisterService} = require("../../services/EmployeeServices/employeeRegisterService");
 
 const employeeRegister = async (req, res) => {
     try {

@@ -1,4 +1,4 @@
-const {resultGridService,singleResultService,singleAttendanceService} = require("../../services/paggingService");
+const {resultGridService,singleResultService,singleAttendanceService} = require("../../services/PaggingServices/studentResultService");
 
 const resultGrid = async (req, res) => {
     try {

@@ -1,4 +1,5 @@
-const {pageWithAllFilterService,pageSearchService,pageSeachOptimiumService,pageSeachOptimiumLimitService} = require("../../services/paggingService");
+const {pageWithAllFilterService } = require("../../services/PaggingServices/pageAllFilterService");
+const {pageSearchService,pageSeachOptimiumService,pageSeachOptimiumLimitService} = require("../../services/PaggingServices/searchPaggingService");
 
 const pageSearching = async (req, res) => {
     try {

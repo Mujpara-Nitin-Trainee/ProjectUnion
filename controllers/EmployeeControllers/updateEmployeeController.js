@@ -1,4 +1,4 @@
-const {employeeUpdateService} = require("../../services/employeeService");
+const {employeeUpdateService} = require("../../services/EmployeeServices/employeeUpdateService");
 
 const employeeUpdate = async(req,res) => {
 

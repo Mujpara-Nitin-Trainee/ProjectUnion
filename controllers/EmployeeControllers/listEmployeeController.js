@@ -1,4 +1,4 @@
-const {employeeService} = require("../../services/employeeService");
+const {employeeService} = require("../../services/EmployeeServices/fetchEmployeeService");
 
 const AjaxCrudEmployees = async (req,res) => {
 
