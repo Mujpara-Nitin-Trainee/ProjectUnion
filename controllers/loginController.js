@@ -19,11 +19,18 @@ function generateRandomString(val){
 
 const userLogin = async(req,res) => {
     try{
+
         const [checkUser] = await checkUserService(req.body.email);
 
         if(checkUser.length == 1){
             const [response] = await loginService(req.body,checkUser[0].salt);
             // console.log(response);
+
+            let cookie = req.headers.cookie;
+
+            if(cookie){
+                res.render('Home',{message:"You Are Already Logined"});
+            }
 
             if(response.length == 1){
 
