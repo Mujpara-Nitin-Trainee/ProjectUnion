@@ -11,7 +11,6 @@ router.use('/user',registerRouter);
 router.use('/user',loginRouter);
 router.use('/user',userRouter);
 router.use('/user/pagging',pagginationRouter);
-
 router.use('/user/jobForm',jobFormRouter);
 
 module.exports = router;
