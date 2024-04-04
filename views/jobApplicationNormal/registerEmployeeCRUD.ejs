@@ -128,7 +128,7 @@
                         <label for="state">State:-</label>
                       </td>
                       <td>
-                        <select name="state" id="state" required>
+                        <select name="state" id="state">
                           <option value="">Select Any State</option>
                           <% states.forEach((e)=> { %>
                           <option
@@ -172,7 +172,7 @@
                       </td>
                       <td>
                         <select name="relation" id="relation">
-                          <option>Select Any Relation</option>
+                          <option value="">Select Any Relation</option>
                           <% relation.forEach((e)=> { %>
                           <option value="<%= e %>"><%=e %></option>
                           <% }) %>
@@ -217,7 +217,6 @@
                         type="text"
                         name="board[]"
                         placeholder="Enter Board Name"
-                        required
                       />
                     </td>
                     <td>
@@ -228,7 +227,6 @@
                         type="text"
                         name="year[]"
                         placeholder="example:- 2018"
-                        required
                       />
                     </td>
                     <td>
@@ -239,7 +237,6 @@
                         type="text"
                         name="percentage[]"
                         placeholder="63%"
-                        required
                       />
                     </td>
                     <td>
