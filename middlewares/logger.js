@@ -1,10 +1,6 @@
 const pino = require('pino');
 
-const fileTransport = pino.destination({
-    dest: `logs/app.log`
-})
-
-const logger = pino(fileTransport,{
+const logger = pino({
     transport:{
         target:"pino-pretty",
         options:{

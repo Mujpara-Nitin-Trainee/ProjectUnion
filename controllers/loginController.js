@@ -28,10 +28,19 @@ const userLogin = async(req,res) => {
 
             let cookie = req.headers.cookie;
 
-            // if(cookie){
-            //     logger.warn("User is Already registered");
-            //     res.render('Home',{message:"You Are Already Logined"});
-            // }
+            if(cookie){
+
+                try{
+                    const data = jwt.verify(cookie.split('=')[1],secret_key);
+
+                    logger.warn("User is Already registered");
+                    res.render('Home',{message:"You Are Already Logined"});
+                }catch(err){
+                    logger.error("Data Not Found in Token:- " + err);
+                    // console.log(err);
+                }
+               
+            }
 
             if(response.length == 1){
 
