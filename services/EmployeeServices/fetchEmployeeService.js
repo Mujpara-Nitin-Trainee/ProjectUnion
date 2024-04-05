@@ -1,4 +1,5 @@
 const db = require("../../config/config");
+const logger = require('../../middlewares/logger');
 
 const employeeService = async() => {
     try{
@@ -12,7 +13,7 @@ const employeeService = async() => {
     
       return result;
     }catch(err){
-      console.log(err);
+      logger.error("can't execute:- " + err);
     }
 }
   
@@ -30,7 +31,7 @@ const fetchEmployeeService = async(body) => {
       return employee
   
     }catch(err){
-      console.log(err);
+      logger.error("can't execute:- " + err);
     }
   }
   
@@ -64,7 +65,7 @@ const fetchEmployeeLanguageService = async(body) => {
   
       return language;
     }catch(err){
-      console.log(err);
+      logger.error("can't execute:- " + err);
     }
 }
   
@@ -81,7 +82,7 @@ const fetchEmployeeTechService = async(body) => {
         return tech;
   
     }catch(err){
-      console.log(err);
+      logger.error("can't execute:- " + err);
     }
 }
   
@@ -98,7 +99,7 @@ const fetchEmployeeWorkService = async(body) => {
         return workExp;
   
     }catch(err){
-      console.log(err);
+      logger.error("can't execute:- " + err);
     }
 }
   
@@ -116,7 +117,7 @@ const fetchEmployeeReferService = async(body) => {
         return refer;
   
     }catch(err){
-      console.log(err);
+      logger.error("can't execute:- " + err);
     }
   }
   
@@ -134,7 +135,7 @@ const fetchEmployeePreferService = async(body) => {
         return prefer;
   
     }catch(err){
-      console.log(err);
+      logger.error("can't execute:- " + err);
     }
 }
 

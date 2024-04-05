@@ -1,3 +1,4 @@
+const logger = require("../../middlewares/logger");
 const {resultGridService,singleResultService,singleAttendanceService} = require("../../services/PaggingServices/studentResultService");
 
 const resultGrid = async (req, res) => {
@@ -6,11 +7,10 @@ const resultGrid = async (req, res) => {
       let offset = (page - 1) * 20;
   
       const [response] = await resultGridService(offset);
-      // console.log(response);
   
       res.render("resultGrid", { student: response, page });
     } catch (err) {
-      console.log(err);
+      logger.error("unable to get data:- " + err);
     }
 };
   
@@ -24,10 +24,8 @@ const singleResult = async (req, res) => {
       for (let i = 0; i < response.length; i++) {
         total_mark = total_mark + response[i].total_marks;
       }
-      // console.log(total_marks);
   
       const [attendance] = await singleAttendanceService(sid);
-      // console.log(attendance[0].Present_days);
   
       res.render("singleResultGrid", {
         student: response,
@@ -35,7 +33,7 @@ const singleResult = async (req, res) => {
         attendance: attendance,
       });
     } catch (err) {
-      console.log(err);
+      logger.error("Unable to get data:- " + err);
     }
 };
   
@@ -43,8 +41,6 @@ const singleAttendance = async (req, res) => {
     try {
       const id = req.query.id || 1;
       const date = req.query.month || 12;
-      // console.log(id);
-      // console.log(date);
   
       let month = 12;
       let year = 2023;
@@ -63,11 +59,10 @@ const singleAttendance = async (req, res) => {
       }
   
       const [response] = await AttendanceReportService(month, year, id);
-      // console.log(response);
   
       res.render("attendanceReport", { student: response[0], month, id });
     } catch (err) {
-      console.log(err);
+      logger.error("unable to get data:- " + err);
     }
 };
 

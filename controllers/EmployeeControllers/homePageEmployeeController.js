@@ -1,3 +1,4 @@
+const logger = require('../../middlewares/logger');
 const {fetchStatesService,fetchOptionService} = require('../../services/EmployeeServices/supportService');
 
 const jobApkAjaxHome = async (req,res) => {
@@ -14,7 +15,6 @@ const jobApkAjaxHome = async (req,res) => {
       let tech_capability = [];
   
       Object.keys(options).forEach((e) => {
-        // console.log(result[e].select_name);
   
         if (options[e].select_name == "Relationship_Status") {
           relation.push(options[e].option_key);
@@ -46,7 +46,7 @@ const jobApkAjaxHome = async (req,res) => {
         tech_capability,
       });
     } catch (err) {
-      console.log(err);
+      logger.error("Unable to fetch data:- " + err);
     }
   
 }
@@ -64,7 +64,6 @@ const jobApkCrudHome = async (req, res) => {
       let tech_capability = [];
   
       Object.keys(options).forEach((e) => {
-        // console.log(result[e].select_name);
   
         if (options[e].select_name == "Relationship_Status") {
           relation.push(options[e].option_key);
@@ -96,7 +95,7 @@ const jobApkCrudHome = async (req, res) => {
         tech_capability,
       });
     } catch (err) {
-      console.log(err);
+      logger.error("Unable to fetch data:- " + err);
     }
   };
 

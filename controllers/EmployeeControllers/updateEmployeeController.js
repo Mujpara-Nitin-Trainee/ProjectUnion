@@ -1,3 +1,4 @@
+const logger = require('../../middlewares/logger');
 const {employeeUpdateService} = require("../../services/EmployeeServices/employeeUpdateService");
 
 const employeeUpdate = async(req,res) => {
@@ -82,8 +83,6 @@ const employeeUpdate = async(req,res) => {
         }
       });
   
-      // console.log(req.body);
-  
       const [response] = await employeeUpdateService(req.body,lang,capability,tech,level,company_name);
   
       if(response){
@@ -91,7 +90,7 @@ const employeeUpdate = async(req,res) => {
       }
   
     }catch(err){
-      console.log(err);
+      logger.info("Can't Get data:- " + err);
     }
   
 }

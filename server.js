@@ -3,6 +3,8 @@ const app = express();
 const bodyparser = require('body-parser');
 const cookieparser = require('cookie-parser');
 const dotenv = require('dotenv');
+const logger = require('./middlewares/logger');
+
 dotenv.config();
 
 const port = process.env.PORT;
@@ -20,4 +22,4 @@ const routes = require('./routers/router');
 
 app.use("/api",routes);
 
-app.listen(port, () => console.log(port + " is listening"));
+app.listen(port, () => logger.info(port + " is listening"));

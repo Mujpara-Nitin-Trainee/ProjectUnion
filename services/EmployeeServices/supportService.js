@@ -1,4 +1,5 @@
 const db = require('../../config/config');
+const logger = require('../../middlewares/logger');
 
 const fetchStatesService = async () => {
     try {
@@ -11,7 +12,7 @@ const fetchStatesService = async () => {
       });
       return result;
     } catch (err) {
-      console.log(err);
+      logger.error("can't execute:- " + err);
     }
 };
   
@@ -27,7 +28,7 @@ const fetchOptionService = async () => {
   
       return result;
     } catch (err) {
-      console.log(err);
+      logger.error("can't execute:- " + err);
     }
 };
   
@@ -43,7 +44,7 @@ const fetchCitiesService = async (body) => {
   
       return result;
     } catch (err) {
-      console.log(err);
+      logger.error("can't execute:- " + err);
     }
 };
   

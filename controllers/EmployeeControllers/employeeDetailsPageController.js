@@ -1,3 +1,4 @@
+const logger = require('../../middlewares/logger');
 const {fetchStatesService,fetchOptionService} = require("../../services/EmployeeServices/supportService");
 const { 
         fetchEmployeeService,
@@ -76,25 +77,18 @@ const EmployeeDetailsUpdatePage = async(req,res) => {
               lang_capa.push(lang_capability[i % 3]);
           }
   
-          // console.log(lang_capa);
-          // console.log(emp_lang_cap);
-  
           let j = 0;
           for (let i = 0; i < lang_capa.length; i++) {
               if (lang_capa[i] === emp_lang_cap[j]) {
-                  // console.log(1);
                   langcap_checked.push(1);
                   j++;
               } else {
                   langcap_checked.push(0);
-                  // console.log(0);
               }
           }
-          // console.log(langcap_checked);
           let answer_langcapability = [];
   
           while (langcap_checked.length) answer_langcapability.push(langcap_checked.splice(0, 3));
-          // console.log(answer_langcapability);
   
           // Employee's Tech Checked
           let tech_checked = [];
@@ -113,9 +107,6 @@ const EmployeeDetailsUpdatePage = async(req,res) => {
               }
           }
   
-          // console.log(tech_cap_checked);
-  
-  
           let id = req.body.id;
   
           res.render('updateEmployeeCRUD',{employee:basic,states: states,id,
@@ -126,7 +117,7 @@ const EmployeeDetailsUpdatePage = async(req,res) => {
           });
   
     }catch(err){
-      console.log(err);
+      logger.error("Unable to get data:- " + err);
     }
 }
 

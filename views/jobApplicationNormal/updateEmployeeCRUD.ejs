@@ -128,14 +128,15 @@
                         <label for="state">State:-</label>
                       </td>
                       <td>
-                        <select name="state" id="state" required>
+                        <select name="state" id="state">
                             <option value=""
                             <% if(employee[0].state === '') { %> selected <% } %>
                             >Select Any State</option>
                             <% states.forEach((e)=> { %>
+                              
                             <option
                               value="<%= e.state_name %>"
-                              <% if(employee[0].state === "e.state_name") { %> selected <% } %>
+                              <% if(employee[0].state === e.state_name) { %> selected <% } %>
                               onclick="loadcities('<%= e.id %>')"
                               >
                               <%=e.state_name %>
@@ -177,7 +178,8 @@
                         <select name="relation" id="relation">
                             <option>Select Any Relation</option>
                             <% relation.forEach((e)=> { %>
-                            <option value="<%= e %>" <% if(employee[0].relation === 'e') { %> selected <% } %> > <%=e %></option>
+                              
+                            <option value="<%= e %>" <% if(employee[0].relation_status === e) { %> selected <% } %> > <%=e %></option>
                             <% }) %>
                           </select>
                         <span id="relation_error" class="error"></span>

@@ -1,3 +1,4 @@
+const logger = require('../../middlewares/logger');
 const {fetchCitiesService} = require("../../services/EmployeeServices/supportService");
 
 const cities = async (req, res) => {
@@ -8,6 +9,7 @@ const cities = async (req, res) => {
   
       res.json(cities);
     } catch (err) {
+      logger.error("Unable to fetch data:- " + err);
       console.log(err);
     }
 };

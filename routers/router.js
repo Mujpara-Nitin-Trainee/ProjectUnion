@@ -1,12 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../middleware/auth');
-
-// const registerRouter = require('./registerRouter');
-// const loginRouter = require('./loginRouter');
-// const userRouter = require('./userRouter');
-// const pagginationRouter = require('./pagginationRouter');
-// const jobFormRouter = require('./JobFormRouter');
+const auth = require('../middlewares/auth');
 
 const {userRegister,userActivate,userRemove, userAuthenticatation,userCheck} = require('../controllers/registerController');
 const {userLogin,userForgot,userSetPassword,userRemoveAccesscode} = require('../controllers/loginController');

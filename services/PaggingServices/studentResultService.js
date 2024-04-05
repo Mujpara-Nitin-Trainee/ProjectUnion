@@ -1,4 +1,5 @@
 const db = require("../../config/config");
+const logger = require('../../middlewares/logger');
 
 const resultGridService = async (offset) => {
     try {
@@ -46,7 +47,7 @@ const resultGridService = async (offset) => {
   
       return result;
     } catch (err) {
-      console.log(err);
+      logger.error("can't execute:- " + err);
     }
   };
   
@@ -71,7 +72,7 @@ const singleResultService = async(sid) => {
           return result;
   
       }catch(err){
-          console.log(err);
+        logger.error("can't execute:- " + err);
       }
 }
   
@@ -95,7 +96,7 @@ const singleAttendanceService = async(sid) => {
           return result;
   
       }catch(err){
-          console.log(err);
+        logger.error("can't execute:- " + err);
       }
 }
 
