@@ -35,6 +35,7 @@ const userLogin = async(req,res) => {
 
                     logger.warn("User is Already registered");
                     res.render('Home',{message:"You Are Already Logined"});
+                    return 0;
                 }catch(err){
                     logger.error("Data Not Found in Token:- " + err);
                     // console.log(err);
