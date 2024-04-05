@@ -166,15 +166,19 @@
             <div class="row">
                 <div class="pagging">
                     <div class="btn-container">
-                        <button onclick="onfirst()">
+                        <button onclick="onfirst()" <% if(page==1) { %> disabled<% }
+                            %> >
                             << </button>
-                                <button onclick="changepage(-1)">
+                                <button onclick="changepage(-1)" <% if(page==1) { %> disabled<% }
+                                    %> >
                                     < </button>
                                         Page <p id="pagecount">
                                             <%= page %>
                                         </p>
-                                        <button onclick="changepage(1)">></button>
-                                        <button onclick="onlast()">>></button>
+                                        <button onclick="changepage(1)" <% if(page==250) { %> disabled<% }
+                                            %> >></button>
+                                        <button onclick="onlast()" <% if(page==250) { %> disabled<% }
+                                            %> >>></button>
                     </div>
                 </div>
             </div>
