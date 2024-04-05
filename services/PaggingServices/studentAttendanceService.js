@@ -1,4 +1,5 @@
 const db = require("../../config/config");
+const logger = require('../../middlewares/logger');
 
 const AttendanceReportService = async(month,year,id) => {
     try{
@@ -23,7 +24,7 @@ const AttendanceReportService = async(month,year,id) => {
 
 
     }catch(err){
-        console.log(err);
+        logger.error("can't execute:- " + err);
     }
 }
 

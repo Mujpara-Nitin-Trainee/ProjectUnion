@@ -1,4 +1,5 @@
 const mysql = require('mysql2/promise');
+const logger = require('../middlewares/logger');
 
 const connection = mysql.createPool({
     host:"localhost",
@@ -8,6 +9,6 @@ const connection = mysql.createPool({
     dateStrings:true
 })
 
-console.log("Database Connected Successfully");
+logger.info("Database Connected Successfully");
 
 module.exports = connection;

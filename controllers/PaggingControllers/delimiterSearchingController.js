@@ -1,3 +1,5 @@
+const logger = require('../../middlewares/logger');
+
 const {pageDelimiterSearchService} = require("../../services/PaggingServices/delimiterSearchService");
 
 const pageDelimiterSearch = async(req,res) => {
@@ -73,11 +75,7 @@ const pageDelimiterSearch = async(req,res) => {
             email.push(`email LIKE '%'`)
         }
 
-        // console.log(firstname + " " + lastname + " " + email + " " + mobileno);
-
         const [response] = await pageDelimiterSearchService(firstname,lastname,email,mobileno);
-
-        // console.log(response);
 
         if(response.length > 0){
             res.render('delimiterSearch',{student:response,rows:Object.keys(response[0])});
@@ -85,8 +83,8 @@ const pageDelimiterSearch = async(req,res) => {
             res.render('delimiterSearch',{student:response, rows:0});
         }
 
-
     }catch(err){
+        logger.info("Unable to Get Data:- " + err);
         console.log(err);
     }
 }

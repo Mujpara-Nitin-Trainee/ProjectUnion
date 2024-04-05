@@ -1,3 +1,4 @@
+const logger = require('../../middlewares/logger');
 const {pageWithAllFilterService } = require("../../services/PaggingServices/pageAllFilterService");
 const {pageSearchService,pageSeachOptimiumService,pageSeachOptimiumLimitService} = require("../../services/PaggingServices/searchPaggingService");
 
@@ -46,7 +47,7 @@ const pageSearching = async (req, res) => {
             res.render('searchGrid',{student:response,rows:Object.keys(response[0]),page,date,order,column,name,surname,presentday,percentage,lessornot,condition,total,maxpage});
   
     } catch (err) {
-      console.log(err);
+        logger.error("Unable to get data:- " + err);
     }
 };
   
@@ -69,7 +70,7 @@ const pageSearchFilter = async(req,res) => {
           }
   
       }catch(err){
-          console.log(err);
+          logger.error("unable to get data:- " + err);
       }
 }
   
@@ -106,7 +107,7 @@ const pageSeachOptimium = async(req,res) => {
           }
   
       }catch(err){
-          console.log(err);
+          logger.error("unable to get data:- " + err);
       }
 }
 

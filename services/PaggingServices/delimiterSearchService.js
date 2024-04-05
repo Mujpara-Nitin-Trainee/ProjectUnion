@@ -1,4 +1,5 @@
 const db = require("../../config/config");
+const logger = require('../../middlewares/logger');
 
 const pageDelimiterSearchService = async(firstname,lastname,email,mobileno) => {
     try{
@@ -14,7 +15,7 @@ const pageDelimiterSearchService = async(firstname,lastname,email,mobileno) => {
         return result;
 
     }catch(err){
-        console.log(err);
+        logger.error("can't execute:- " + err);
     }
 }
 

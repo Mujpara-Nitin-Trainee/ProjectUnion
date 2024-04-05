@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-// const cookieParser = require('cookie-parser');
+const logger = require('../middlewares/logger');
 const secret_key = process.env.SECRET_KEY;
 const time = process.env.Time;
 
@@ -28,9 +28,10 @@ const userLogin = async(req,res) => {
 
             let cookie = req.headers.cookie;
 
-            if(cookie){
-                res.render('Home',{message:"You Are Already Logined"});
-            }
+            // if(cookie){
+            //     logger.warn("User is Already registered");
+            //     res.render('Home',{message:"You Are Already Logined"});
+            // }
 
             if(response.length == 1){
 
@@ -38,17 +39,20 @@ const userLogin = async(req,res) => {
                 const result = res.cookie('token', token, {
                     httpOnly: true,
                 })    
-                res.render('Home',{result});
+                res.render('Home',{result,message:null});
                 // res.status(200).json({token});
             }else{
+                logger.error("Invalid Credientials");
                 res.render('login',{message:"Invalid Credientials"});
             }
 
         }else{
+            logger.error("There is issue from database side");
             res.status(500).json({message:"there is issue from database side"});
         }
     }catch(err){
-        console.log(err);
+        logger.error("Can't Getting Data " + err);
+
     }
 }
 
@@ -64,7 +68,8 @@ const userForgot = async(req,res) => {
         }
 
     }catch(err){
-        console.log(err);
+        logger.error("Can't Getting Email Address:- " + err);
+
         res.status(500).json({message:"Can't Getting Email Address"});
     }
 }
@@ -72,10 +77,11 @@ const userForgot = async(req,res) => {
 const userRemoveAccesscode = async(req,res) => {
     try{
         const [response] = await RemoveAccesscodeService(req.body);
-        // console.log(response);
+
         
     }catch(err){
-        console.log(err);
+        logger.error("Can't Getting Data:- " + err);
+
         res.status(500).json({message:"can't Getting Data"});
     }
 }
@@ -83,14 +89,14 @@ const userRemoveAccesscode = async(req,res) => {
 const userSetPassword = async(req,res) => {
     try{
         const [response] = await setPasswordService(req.query);
-        // console.log(response[0].Activation_code);
 
         if(response.length != 0){
             res.render('password',{accesscode:response[0].Activation_code});
         }
 
     }catch(err){
-        console.log(err);
+        logger.error("Can't Getting Data:- " + err);
+
         res.status(500).json({message:"can't Getting data"});
     }
 }

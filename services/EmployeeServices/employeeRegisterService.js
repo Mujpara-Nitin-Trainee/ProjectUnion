@@ -1,4 +1,5 @@
 const db = require("../../config/config");
+const logger = require('../../middlewares/logger');
 
 const employeeRegisterService = async (body,lang,capability,tech,level,company_name) => {
     try {
@@ -17,16 +18,12 @@ const employeeRegisterService = async (body,lang,capability,tech,level,company_n
         body.relation,
       ];  
   
-      // console.log(employeeValues);
-  
       const resultId = await db.execute( employeeDetails, employeeValues,
         (err, res) => {
           if (err) throw err;
           return res;
         }
       );
-  
-      // console.log(resultId[0].insertId);
   
       let d = 0;
       if(typeof(body.degree) != "string"){
@@ -35,8 +32,6 @@ const employeeRegisterService = async (body,lang,capability,tech,level,company_n
   
               let employeeEducation = `Insert into Education_Master(eid,degree,board,year,percentage) values (?,?,?,?,?)`;
               let educationValue = [resultId[0].insertId, body.degree[d], body.board[d], body.year[d], body.percentage[d]];
-  
-              // console.log(educationValue);
   
               const result = db.execute(
                 employeeEducation,
@@ -50,7 +45,7 @@ const employeeRegisterService = async (body,lang,capability,tech,level,company_n
   
           })
         }catch(err){
-          console.log(err);
+          logger.error("can't execute :- " + err);
         }
       }else{
         let employeeEducation = `Insert into Education_Master(eid,degree,board,year,percentage) values (?,?,?,?,?)`;
@@ -72,9 +67,7 @@ const employeeRegisterService = async (body,lang,capability,tech,level,company_n
             try {
               let employeeLanguage = `Insert into Employee_language_Master(eid,lang_name,lang_capability) values (?,?,?)`;
               let languageValues = [resultId[0].insertId, e, capability[l]];
-  
-              // console.log(languageValues);
-  
+
               const result = db.execute(
                 employeeLanguage,
                 languageValues,
@@ -86,7 +79,7 @@ const employeeRegisterService = async (body,lang,capability,tech,level,company_n
               l++;
   
             } catch (err) {
-              console.log(err);
+              logger.error("can't execute:- " + err);
             }
           })
       }else{
@@ -103,7 +96,7 @@ const employeeRegisterService = async (body,lang,capability,tech,level,company_n
             }
           );
         } catch (err) {
-          console.log(err);
+          logger.error("can't execute :- "+err);
         }
       }
       
@@ -120,7 +113,7 @@ const employeeRegisterService = async (body,lang,capability,tech,level,company_n
               });
               t++;
             } catch (err) {
-              console.log(err);
+              logger.error("can't execute:- " + err);
             }
           })
       }else{
@@ -133,7 +126,7 @@ const employeeRegisterService = async (body,lang,capability,tech,level,company_n
             return res;
           });
         } catch (err) {
-          console.log(err);
+          logger.error("can't execute:- " + err);
         }
       }
   
@@ -141,11 +134,8 @@ const employeeRegisterService = async (body,lang,capability,tech,level,company_n
       for(let i=0; i < company_name.length; i++){
         try {
           let company = company_name[i];
-          // console.log(body.designation[1]);
           let employeeCompany = `Insert into Work_experience_master(eid,company_name,designation,startdate,enddate) values (?,?,?,?,?)`;
           let companyValue = [resultId[0].insertId, company, body.designation[i], body.start_date[i], body.end_date[i]];
-  
-          // console.log(companyValue);
   
           const result = db.execute(
             employeeCompany,
@@ -156,7 +146,7 @@ const employeeRegisterService = async (body,lang,capability,tech,level,company_n
             }
           );
         } catch (err) {
-          console.log(err);
+          logger.error("can't execute:- " + err);
         }
       }
     }else{
@@ -174,7 +164,7 @@ const employeeRegisterService = async (body,lang,capability,tech,level,company_n
         );
         return result;
       } catch (err) {
-        console.log(err);
+        logger.error("can't execute:- " + err);
       }
     }
   
@@ -187,7 +177,7 @@ const employeeRegisterService = async (body,lang,capability,tech,level,company_n
         return res;
       });
     } catch (err) {
-      console.log(err);
+      logger.error("can't execute:- " + err);
     }
   
     if(typeof(body.location) != "string"){
@@ -209,7 +199,7 @@ const employeeRegisterService = async (body,lang,capability,tech,level,company_n
             return res;
           });
         } catch (err) {
-          console.log(err);
+          logger.error("can't execute:- " + err);
         }
       })
   
@@ -230,14 +220,14 @@ const employeeRegisterService = async (body,lang,capability,tech,level,company_n
           return res;
         });
       } catch (err) {
-        console.log(err);
+        logger.error("can't execute:- " + err);
       }
     }
   
       return resultId;
   
     } catch (err) {
-      console.log(err);
+      logger.error("can't fetch data:- " + err);
     }
 };
 

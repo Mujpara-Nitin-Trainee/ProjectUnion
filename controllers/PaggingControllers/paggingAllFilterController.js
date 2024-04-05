@@ -1,3 +1,5 @@
+const logger = require('../../middlewares/logger');
+
 const {pageWithAllFilterService} = require("../../services/PaggingServices/pageAllFilterService");
 
 const pageWithAllFilter = async (req, res) => {
@@ -45,7 +47,7 @@ const pageWithAllFilter = async (req, res) => {
         date,
       });
     } catch (err) {
-      console.log(err);
+      logger.error("Unable To get Data:- " + err);
     }
 };
 
