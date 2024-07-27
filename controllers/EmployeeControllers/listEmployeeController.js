@@ -1,3 +1,4 @@
+const logger = require('../../middlewares/logger');
 const {employeeService} = require("../../services/EmployeeServices/fetchEmployeeService");
 
 const AjaxCrudEmployees = async (req,res) => {
@@ -9,7 +10,7 @@ const AjaxCrudEmployees = async (req,res) => {
       res.render('employeeList',{employee:response,rows:Object.keys(response[0])});
   
     }catch(err){
-      console.log(err);
+      logger.error("unable to fetch data:- " + err);
     }
 }
   
@@ -22,7 +23,8 @@ const NormalCrudEmployees = async (req,res) => {
       res.render('employeeListCRUD',{employee:response,rows:Object.keys(response[0])})
   
     }catch(err){
-      console.log(err);
+
+      logger.error("unable to fetch data:- " + err);
     }
 }
 

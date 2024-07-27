@@ -1,4 +1,5 @@
 const db = require("../../config/config");
+const logger = require('../../middlewares/logger');
 
 const pageWithAllFilterService = async (month, year, column, order, offset) => {
     try {
@@ -23,7 +24,7 @@ const pageWithAllFilterService = async (month, year, column, order, offset) => {
   
       return result;
     } catch (err) {
-      console.log(err);
+      logger.error("can't execute:- " + err);
     }
 };
 

@@ -1,4 +1,5 @@
 const db = require("../../config/config");
+const logger = require('../../middlewares/logger');
 
 const pageSearchService = async (id) => {
     try {
@@ -22,7 +23,7 @@ const pageSearchService = async (id) => {
       return result;
   
     } catch (err) {
-      console.log(err);
+        logger.error("can't execute:- " + err);
     }
 }
 
@@ -49,7 +50,7 @@ const pageSeachOptimiumService = async(name,condition,surname,lessornot,presentd
         return result;
 
     }catch(err){
-        console.log(err);
+        logger.error("can't execute:- " + err);
     }
 }
 
@@ -76,7 +77,7 @@ const pageSeachOptimiumLimitService = async(name,condition,surname,lessornot,pre
         return result;        
 
     }catch(err){
-        console.log(err);
+        logger.error("can't execute:- " + err);
     }
 }
 

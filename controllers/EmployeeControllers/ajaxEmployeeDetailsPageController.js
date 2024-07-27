@@ -1,3 +1,4 @@
+const logger = require('../../middlewares/logger');
 const {fetchStatesService,fetchOptionService} = require("../../services/EmployeeServices/supportService");
 const { 
         fetchEmployeeService,
@@ -22,7 +23,6 @@ const AjaxEmployeeDetailsUpdatePage = async(req,res) => {
       let tech_capability = [];
   
       Object.keys(options).forEach((e) => {
-        // console.log(result[e].select_name);
   
         if (options[e].select_name == "Relationship_Status") {
           relation.push(options[e].option_key);
@@ -74,10 +74,7 @@ const AjaxEmployeeDetailsUpdatePage = async(req,res) => {
           for (let i = 0; i < lang_capability.length * (langauge.length); i++) {
               lang_capa.push(lang_capability[i % 3]);
           }
-  
-          // console.log(lang_capa);
-          // console.log(emp_lang_cap);
-  
+
           let j = 0;
           for (let i = 0; i < lang_capa.length; i++) {
               if (lang_capa[i] === emp_lang_cap[j]) {
@@ -113,10 +110,7 @@ const AjaxEmployeeDetailsUpdatePage = async(req,res) => {
                 tech_cap_checked.push("");
             }
           }
-
-          // console.log(tech_cap_checked);
-  
-  
+    
           let id = req.body.id;
   
           res.render('updateEmployee',{employee:basic,states: states,id,
@@ -127,7 +121,7 @@ const AjaxEmployeeDetailsUpdatePage = async(req,res) => {
           });
     
     }catch(err){
-      console.log(err);
+      logger.error("Unable to fetch data:- " + err);
     }  
 }
 

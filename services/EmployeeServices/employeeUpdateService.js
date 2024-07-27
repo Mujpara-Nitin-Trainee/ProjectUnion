@@ -1,4 +1,5 @@
 const db = require("../../config/config");
+const logger = require('../../middlewares/logger');
 
 const employeeUpdateService = async(body,lang,capability,tech,level,company_name) => {
     try {
@@ -36,8 +37,6 @@ const employeeUpdateService = async(body,lang,capability,tech,level,company_name
               let employeeEducation = `update Education_Master set degree = ?, board = ?, year = ?, percentage = ? where eid = ? and degree = '${body.degree[d]}'`;
               let educationValue = [body.degree[d], body.board[d], body.year[d], body.percentage[d],body.id];
   
-              // console.log(educationValue);
-  
               const result = db.execute(
                 employeeEducation,
                 educationValue,
@@ -50,7 +49,7 @@ const employeeUpdateService = async(body,lang,capability,tech,level,company_name
   
           })
         }catch(err){
-          console.log(err);
+          logger.error("can't execute:- " + err);
         }
       }else{
         let employeeEducation = `update Education_Master set degree = ?, board = ?, year = ?, percentage = ? where eid = ? and degree = '${body.degree}'`;
@@ -86,7 +85,7 @@ const employeeUpdateService = async(body,lang,capability,tech,level,company_name
               l++;
   
             } catch (err) {
-              console.log(err);
+              logger.error("can't execute:- " + err);
             }
           })
       }else{
@@ -103,7 +102,7 @@ const employeeUpdateService = async(body,lang,capability,tech,level,company_name
             }
           );
         } catch (err) {
-          console.log(err);
+          logger.error("can't execute:- " + err);
         }
       }
       
@@ -120,7 +119,7 @@ const employeeUpdateService = async(body,lang,capability,tech,level,company_name
               });
               t++;
             } catch (err) {
-              console.log(err);
+              logger.error("can't execute:- " + err);
             }
           })
       }else{
@@ -133,7 +132,7 @@ const employeeUpdateService = async(body,lang,capability,tech,level,company_name
             return res;
           });
         } catch (err) {
-          console.log(err);
+          logger.error("can't execute:- " + err);
         }
       }
   
@@ -156,7 +155,7 @@ const employeeUpdateService = async(body,lang,capability,tech,level,company_name
             }
           );
         } catch (err) {
-          console.log(err);
+          logger.error("can't execute:- " + err);
         }
       }
     }else{
@@ -174,7 +173,7 @@ const employeeUpdateService = async(body,lang,capability,tech,level,company_name
         );
         return result;
       } catch (err) {
-        console.log(err);
+        logger.error("can't execute:- " + err);
       }
     }
   
@@ -187,7 +186,7 @@ const employeeUpdateService = async(body,lang,capability,tech,level,company_name
         return res;
       });
     } catch (err) {
-      console.log(err);
+      logger.error("can't execute:- " + err);
     }
   
       body.location.map((e) => {
@@ -207,14 +206,14 @@ const employeeUpdateService = async(body,lang,capability,tech,level,company_name
             return res;
           });
         } catch (err) {
-          console.log(err);
+          logger.error("can't execute:- " + err);
         }
       })
     
       return basicUpdate;
   
     } catch (err) {
-      console.log(err);
+      logger.error("can't get data:- " + err);
     }
 }
 

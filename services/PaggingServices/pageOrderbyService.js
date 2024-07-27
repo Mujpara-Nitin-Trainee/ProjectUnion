@@ -1,4 +1,5 @@
 const db = require("../../config/config");
+const logger = require('../../middlewares/logger');
 
 const paggingService = async (offset) => {
     try {
@@ -12,7 +13,7 @@ const paggingService = async (offset) => {
   
       return result;
     } catch (err) {
-      console.log(err);
+      logger.error("can't execute:- " + err);
     }
 };
   
@@ -31,7 +32,7 @@ const pageOrderbyService = async (order, offset) => {
       );
       return result;
     } catch (err) {
-      console.log(err);
+      logger.error("can't execute:- " + err);
     }
 };
 

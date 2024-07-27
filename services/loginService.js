@@ -1,5 +1,6 @@
 const db = require('../config/config');
 const md5 = require('md5');
+const logger = require('../middlewares/logger');
 
 const checkUserService = async (body) => {
     try {
@@ -8,7 +9,7 @@ const checkUserService = async (body) => {
 
         const result = await db.execute(checkUser, checkUserValues, (err, res) => {
             if(err){
-                console.log(err);
+                logger.error("can't execute:- " + err);
             }else{
                 return res;
             }
@@ -17,7 +18,7 @@ const checkUserService = async (body) => {
         return result;
 
     } catch (err) {
-        console.log(err);
+        logger.error("can't get data:- " + err);
     }
 }
 
@@ -35,7 +36,7 @@ const loginService = async (body,salt) => {
         return result;
 
     } catch (err) {
-        console.log(err);
+        logger.error("can't get data:- " + err);
     }
 }
 
@@ -53,7 +54,7 @@ const updateAccesscodeService = async(body,accesscode) => {
         return result;
 
     }catch(err){
-        console.log(err);
+        logger.error("can't get data:- " + err);
     }
 }
 
@@ -70,7 +71,7 @@ const RemoveAccesscodeService = async(body) => {
         return result;
 
     }catch(err){
-        console.log(err);
+        logger.error("can't get data:- " + err);
     }
 }
 
@@ -88,7 +89,7 @@ const setPasswordService = async(body) => {
         return result;
 
     }catch(err){
-        console.log(err);
+        logger.error("can't get data:- " + err);
     }
 }
 
