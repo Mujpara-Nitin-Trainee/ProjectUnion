@@ -121,7 +121,7 @@ const EmployeeDetailsUpdatePage = async (req, res) => {
 
     let id = req.body.id;
 
-    res.render("updateEmployeeCRUD", {
+    res.render("registerEmployeeCRUD", {
       employee: basic,
       states: states,
       cities: cities,
