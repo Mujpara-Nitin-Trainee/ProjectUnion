@@ -6,6 +6,7 @@ const isLoggedIn = (req, res, next) => {
   const token = req.cookies.token;
 
   if (token) {
+
     jwt.verify(token, secret_key, (err, decoded) => {
       if (err) {
         return next();

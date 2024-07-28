@@ -139,7 +139,7 @@
                               <% if(employee[0].state === e.state_name) { %> selected <% } %>
                               onclick="loadcities('<%= e.id %>')"
                               >
-                              <%=e.state_name %>
+                              <%= e.state_name %>
                             </option>
                             <% }) %>
                           </select>
@@ -154,8 +154,14 @@
                         <label for="city">City:-</label>
                       </td>
                       <td>
-                        <select name="city" id="city">
-                          <option value="">Select Any city</option>
+                        <select name="city" id="city" required>
+                          <option value="" <% if(employee[0].city === '') { %> selected <% } %> >
+                          </option>
+                          
+                          <% cities.forEach((e) => { %>
+                            <option value="<%= e.city_name %>" <% if(employee[0].city === e.city_name) { %> selected <% } %> > <%= e.city_name %></option>
+                          <% }) %>
+
                         </select>
                         <span id="city_error" class="error"></span>
                       </td>

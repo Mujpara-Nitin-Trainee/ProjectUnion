@@ -79,6 +79,10 @@ router.get("/user/register", isLoggedIn, (req, res) => {
 
 router.post("/user/register", isLoggedIn, userRegister);
 
+router.get("/user/thanks/:accesscode", isLoggedIn, (req, res) => {
+  res.render("Thanks", { accesscode: req.params.accesscode });
+});
+
 router.get("/user/activate", isLoggedIn, userAuthenticatation);
 
 router.get("/user/error", (req, res) => {
@@ -96,7 +100,7 @@ router.get("/user/login", isLoggedIn, (req, res) => {
   res.render("login", { message: null });
 });
 
-router.post("/user/login", userLogin);
+router.post("/user/login", isLoggedIn, userLogin);
 
 router.get("/user/forgot", (req, res) => {
   res.render("Email");
