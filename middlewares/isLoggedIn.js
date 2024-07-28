@@ -1,14 +1,21 @@
-const jwt = require('jsonwebtoken');
-const dotenv = require('dotenv');
-dotenv.config();
+const jwt = require("jsonwebtoken");
 
-const isLogined = (req,res,next) => {
-    if(req.cookie){
-        if(req.cookie.token){
-            let result = jwt.verify(req.cookie.token,process.env.SECRET_KEY);
-            console.log(result);
-        }
-    }
-}
+const secret_key = process.env.SECRET_KEY;
 
-module.exports = isLogined;
+const isLoggedIn = (req, res, next) => {
+  const token = req.cookies.token;
+
+  if (token) {
+    jwt.verify(token, secret_key, (err, decoded) => {
+      if (err) {
+        return next();
+      }
+
+      return res.redirect("/api/user/home");
+    });
+  } else {
+    return next();
+  }
+};
+
+module.exports = isLoggedIn;
