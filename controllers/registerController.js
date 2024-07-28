@@ -31,8 +31,6 @@ const userRegister = async (req, res) => {
 
     const [checkuser] = await checkUserService(req.body);
 
-    console.log(checkuser);
-
     if (checkuser.length !== 0) {
       logger.warn("Email Already Existes in Database");
       res.render("Register", { message: "Plz Change Email Id" });
@@ -73,7 +71,6 @@ const userActivate = async (req, res) => {
 
 const userAuthenticatation = async (req, res) => {
   try {
-    console.log(req.query.accesscode);
     const [response] = await userAuthenticationService(req.query);
 
     if (response.length == 0) {

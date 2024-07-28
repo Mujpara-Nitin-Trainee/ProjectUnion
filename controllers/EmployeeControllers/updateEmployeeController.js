@@ -82,7 +82,7 @@ const employeeUpdate = async(req,res) => {
           }
         }
       });
-  
+      
       const [response] = await employeeUpdateService(req.body,lang,capability,tech,level,company_name);
   
       if(response){

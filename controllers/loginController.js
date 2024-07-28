@@ -24,7 +24,6 @@ const userLogin = async(req,res) => {
 
         if(checkUser.length == 1){
             const [response] = await loginService(req.body,checkUser[0].salt);
-            // console.log(response);
 
             let cookie = req.headers.cookie;
 
@@ -38,7 +37,6 @@ const userLogin = async(req,res) => {
                     return 0;
                 }catch(err){
                     logger.error("Data Not Found in Token:- " + err);
-                    // console.log(err);
                 }
                
             }

@@ -139,7 +139,7 @@
                               <% if(employee[0].state === e.state_name) { %> selected <% } %>
                               onclick="loadcities('<%= e.id %>')"
                               >
-                              <%=e.state_name %>
+                              <%= e.state_name %>
                             </option>
                             <% }) %>
                           </select>
@@ -154,8 +154,14 @@
                         <label for="city">City:-</label>
                       </td>
                       <td>
-                        <select name="city" id="city">
-                          <option value="">Select Any city</option>
+                        <select name="city" id="city" required>
+                          <option value="" <% if(employee[0].city === '') { %> selected <% } %> >
+                          </option>
+                          
+                          <% cities.forEach((e) => { %>
+                            <option value="<%= e.city_name %>" <% if(employee[0].city === e.city_name) { %> selected <% } %> > <%= e.city_name %></option>
+                          <% }) %>
+
                         </select>
                         <span id="city_error" class="error"></span>
                       </td>
@@ -243,7 +249,7 @@
                                   <span id="s1_error" class="error"></span>
                               </td>
                           </tr>
-                          <% }) %>
+                      <% }) %>
                   </table>
                 </div>
                 <div class="cloneducation"></div>
@@ -390,19 +396,19 @@
                       <label>Name:-</label>
                     </td>
                     <td>
-                      <input type="text" name="name" value="<%=refer[0].refer_name  %>" />
+                      <input type="text" name="name" <% if(id) { %> value="<%=refer[0].refer_name  %>" <% } %> />
                     </td>
                     <td>
                       <label>Contact No:-</label>
                     </td>
                     <td>
-                      <input type="text" name="contactno" value="<%= refer[0].refer_contact %>" />
+                      <input type="text" name="contactno" <% if(id) { %> value="<%= refer[0].refer_contact %>" <% } %> />
                     </td>
                     <td>
                       <label>Relation:-</label>
                     </td>
                     <td>
-                      <input type="text" name="relationship" value="<%= refer[0].refer_relation %>" />
+                      <input type="text" name="relationship" <% if(id) { %> value="<%= refer[0].refer_relation %>" <% } %> />
                     </td>
                   </tr>
                 </table>

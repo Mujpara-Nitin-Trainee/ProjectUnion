@@ -118,7 +118,13 @@
                       </td>
                       <td>
                         <select name="city" id="city" required>
-                          <option value="">Select Any city</option>
+                          <option value="" <% if(employee[0].city === '') { %> selected <% } %> >
+                          </option>
+                          
+                          <% cities.forEach((e) => { %>
+                            <option value="<%= e.city_name %>" <% if(employee[0].city === e.city_name) { %> selected <% } %> > <%= e.city_name %></option>
+                          <% }) %>
+
                         </select>
                         <span id="city_error" class="error"></span>
                       </td>
