@@ -124,7 +124,7 @@ const AjaxEmployeeDetailsUpdatePage = async (req, res) => {
 
     let id = req.body.id;
 
-    res.render("updateEmployee", {
+    res.render("registerEmployee", {
       employee: basic,
       states: states,
       cities: cities,

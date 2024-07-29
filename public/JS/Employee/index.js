@@ -661,7 +661,7 @@ async function submitdata() {
 
   result1 = await result1.json();
 
-  console.log(result1);
+  window.location.href = '/api/user/jobForm/employees'
 }
 
 async function updatedata() {
@@ -687,5 +687,5 @@ async function updatedata() {
 
   result1 = await result1.json();
 
-  console.log(result1);
+  window.location.href = '/api/user/jobForm/employees'
 }
